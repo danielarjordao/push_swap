@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dramos-j <dramos-j@student.42porto.co      +#+  +:+       +#+         #
+#    By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 12:29:38 by dramos-j          #+#    #+#              #
-#    Updated: 2023/11/04 14:51:35 by dramos-j         ###   ########.fr        #
+#    Updated: 2024/06/30 20:02:12 by dramos-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,3 @@ re: fclean all
 
 .PHONY: all bonus clean fclean re
 .SILENT:
-
