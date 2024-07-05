@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 14:20:48 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/06/30 19:07:37 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:57:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ void    reverse_rotate(t_stack *stack)
 {
     t_node *previous_node;
     t_node *last_node;
-
-    if (stack->size < 2)
+    
+    if (stack->size < 2) // Se a pilha tiver menos de 2 nós, retorna
         return ;
+    previous_node = NULL; // Inicializa previous_node para guardar o penúltimo nó
     last_node = stack->top; // Inicializa last_node para percorrer a pilha até o penúltimo nó
-    while (last_node->next->next) // Percorre a pilha até o penúltimo nó
+    while (last_node->next) // Percorre a pilha até o penúltimo nó
     {
         previous_node = last_node; // Guarda o endereço do penúltimo nó
         last_node = last_node->next; // O último nó passa a ser o próximo do último nó

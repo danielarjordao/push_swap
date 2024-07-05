@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/06/30 20:11:21 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:15:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    print_stack(t_stack *stack) {
     }
     ft_printf("\n");
 }
-
+/*
 int main(void) {
     t_stack *a;
     t_stack *b;
@@ -56,6 +56,34 @@ int main(void) {
     ft_printf("Stack b: ");
     print_stack(b);
 
+    free_stack(a);
+    free_stack(b);
+    return (0);
+}*/
+
+int     main()
+{
+    t_stack *a;
+    t_stack *b;
+    int min_value;
+
+    a = init_stack();
+    b = init_stack();
+    push(a, 3);
+    push(a, 1);
+    push(a, 4);
+    push(a, 5);
+    push(a, 2);
+    min_value = find_min(a);
+    ft_printf("Initial stack a: ");
+    print_stack(a);
+    ft_printf("Minimum value in stack a: %d\n", find_min(a));
+    move_min_to_b(a, b, min_value);
+    ft_printf("After moving minimum value to stack b: ");
+    ft_printf("Stack a: ");
+    print_stack(a);
+    ft_printf("Stack b: ");
+    print_stack(b);
     free_stack(a);
     free_stack(b);
     return (0);
