@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/05 18:54:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 12:08:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    free_stack(t_stack *stack);
 // Funções de ordenação
 int     find_min(t_stack *a);
 void    move_min_to_b(t_stack *a, t_stack *b, int min_value);
-void    move_greater_to_b(t_stack *a, t_stack *b, int min_value);
+void    return_to_a(t_stack *a, t_stack *b);
+void    push_swap(t_stack *a);
 
 #endif
