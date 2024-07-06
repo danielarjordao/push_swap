@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 11:53:00 by dramos-j          #+#    #+#              #
-#    Updated: 2024/06/30 20:00:36 by dramos-j         ###   ########.fr        #
+#    Updated: 2024/07/06 16:00:15 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFTPRINTF = ./ft_printf/libftprintf.a
 LIBFTPRINTF_DIR = ./ft_printf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = push_swap.c stack_management.c stack_operations.c
+SRCS = push_swap.c stack_management.c swap.c push.c rotate.c reverse_rotate.c
 OBJS = $(SRCS:.c=.o) # change the source file to object file
 AR = ar rc # archive command to create a static library. r - replace, if the library already exists, c - create a new library
 RM = rm -rf # remove command. r - recursive, if the directory is not empty, f - force, ignore nonexistent files and arguments

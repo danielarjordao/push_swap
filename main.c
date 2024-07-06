@@ -6,88 +6,145 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/06 12:16:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:27:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    print_stack(t_stack *stack) {
-    t_node  *current;
+int main(void)
+{
+    // Inicializa duas pilhas
+    t_stack *stack_a = init_stack();
+    t_stack *stack_b = init_stack();
 
-    current = stack->top;
-    while (current) {
-        ft_printf("%d ", current->content);
-        current = current->next;
-    }
-    ft_printf("\n");
-}
+    // Adiciona alguns elementos na stack_a
+    push(stack_a, 5);
+    push(stack_a, 10);
+    push(stack_a, 20);
+    push(stack_a, 1);
+    push(stack_a, 15);
 
-int main() {
-    t_stack *a;
+    ft_printf("Stack A inicial:\n");
+    print_stack(stack_a);
 
-    // Caso de teste 1: Pilha desordenada
-    a = init_stack();
-    push(a, 5);
-    push(a, 2);
-    push(a, 8);
-    push(a, 1);
-    push(a, 4);
+    // Testa a função swap
+    ft_printf("\nChamando a função sa (swap)...\n");
+    sa(stack_a);
+    ft_printf("\nStack A após sa (swap):\n");
+    print_stack(stack_a);
 
-    printf("Caso de teste 1 - Pilha desordenada:\n");
-    printf("Pilha 'a' antes da ordenacao:\n");
-    print_stack(a);
-    push_swap(a);
-    printf("Pilha 'a' depois da ordenacao:\n");
-    print_stack(a);
-    free_stack(a);
-    printf("\n");
+    // Testa a função push
+    ft_printf("\nChamando a função pb (push para B)...\n");
+    pb(stack_a, stack_b);
+    ft_printf("\nStack A após pb (push para B):\n");
+    print_stack(stack_a);
+    ft_printf("Stack B após pb (push para B):\n");
+    print_stack(stack_b);
 
-    // Caso de teste 2: Pilha já ordenada
-    a = init_stack();
-    push(a, 5);
-    push(a, 4);
-    push(a, 3);
-    push(a, 2);
-    push(a, 1);
+    // Testa a função rotate
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    ft_printf("\nChamando a função ra (rotate)...\n");
+    ra(stack_a);
+    ft_printf("\nStack A após ra (rotate):\n");
+    print_stack(stack_a);
 
-    printf("Caso de teste 2 - Pilha já ordenada:\n");
-    printf("Pilha 'a' antes da ordenacao:\n");
-    print_stack(a);
-    push_swap(a);
-    printf("Pilha 'a' depois da ordenacao:\n");
-    print_stack(a);
-    free_stack(a);
-    printf("\n");
+    // Testa a função reverse rotate
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    ft_printf("\nChamando a função rra (reverse rotate)...\n");
+    rra(stack_a);
+    ft_printf("\nStack A após rra (reverse rotate):\n");
+    print_stack(stack_a);
 
-    // Caso de teste 3: Pilha com elementos repetidos
-    a = init_stack();
-    push(a, 3);
-    push(a, 2);
-    push(a, 3);
-    push(a, 1);
-    push(a, 2);
+    // Testa a função push de volta para stack_a
+    ft_printf("\nChamando a função pa (push para A)...\n");
+    pa(stack_a, stack_b);
+    ft_printf("\nStack A após pa (push para A):\n");
+    print_stack(stack_a);
+    ft_printf("Stack B após pa (push para A):\n");
+    print_stack(stack_b);
 
-    printf("Caso de teste 3 - Pilha com elementos repetidos:\n");
-    printf("Pilha 'a' antes da ordenacao:\n");
-    print_stack(a);
-    push_swap(a);
-    printf("Pilha 'a' depois da ordenacao:\n");
-    print_stack(a);
-    free_stack(a);
-    printf("\n");
+    // Testa a função sb
+    push(stack_b, 30);
+    push(stack_b, 40);
+    ft_printf("\nStack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função sb (swap)...\n");
+    sb(stack_b);
+    ft_printf("\nStack B após sb (swap):\n");
+    print_stack(stack_b);
 
-    // Caso de teste 4: Pilha vazia
-    a = init_stack();
+    // Testa a função ss
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    ft_printf("Stack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função ss (swap ambas as pilhas)...\n");
+    ss(stack_a, stack_b);
+    ft_printf("\nStack A após ss (swap ambas as pilhas):\n");
+    print_stack(stack_a);
+    ft_printf("Stack B após ss (swap ambas as pilhas):\n");
+    print_stack(stack_b);
 
-    printf("Caso de teste 4 - Pilha vazia:\n");
-    printf("Pilha 'a' antes da ordenacao:\n");
-    print_stack(a);
-    push_swap(a);
-    printf("Pilha 'a' depois da ordenacao:\n");
-    print_stack(a);
-    free_stack(a);
-    printf("\n");
+    // Testa a função rb
+    ft_printf("\nStack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função rb (rotate)...\n");
+    rb(stack_b);
+    ft_printf("\nStack B após rb (rotate):\n");
+    print_stack(stack_b);
+
+    // Testa a função rr
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    ft_printf("Stack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função rr (rotate ambas as pilhas)...\n");
+    rr(stack_a, stack_b);
+    ft_printf("\nStack A após rr (rotate ambas as pilhas):\n");
+    print_stack(stack_a);
+    ft_printf("Stack B após rr (rotate ambas as pilhas):\n");
+    print_stack(stack_b);
+
+    // Testa a função rrb
+    ft_printf("\nStack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função rrb (reverse rotate)...\n");
+    rrb(stack_b);
+    ft_printf("\nStack B após rrb (reverse rotate):\n");
+    print_stack(stack_b);
+
+    // Testa a função rrr
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    ft_printf("Stack B inicial:\n");
+    print_stack(stack_b);
+    ft_printf("\nChamando a função rrr (reverse rotate ambas as pilhas)...\n");
+    rrr(stack_a, stack_b);
+    ft_printf("\nStack A após rrr (reverse rotate ambas as pilhas):\n");
+    print_stack(stack_a);
+    ft_printf("Stack B após rrr (reverse rotate ambas as pilhas):\n");
+    print_stack(stack_b);
+
+    // Testa funções de encontrar min e max
+    int min = find_min(stack_a);
+    int max = find_max(stack_a);
+    ft_printf("\nMin de Stack A: %d\n", min);
+    ft_printf("Max de Stack A: %d\n", max);
+
+    // Testa função pop
+    ft_printf("\nStack A inicial:\n");
+    print_stack(stack_a);
+    int popped_value = pop(stack_a);
+    ft_printf("\nValor retirado de Stack A: %d\n", popped_value);
+    ft_printf("Stack A após pop:\n");
+    print_stack(stack_a);
+
+    // Libera a memória das pilhas
+    free_stack(stack_a);
+    free_stack(stack_b);
 
     return 0;
 }

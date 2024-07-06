@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/06 12:08:05 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 15:59:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,32 @@ typedef struct s_stack
     int		size;
 }			t_stack;
 
-// Funções de manipulação de pilha
-void    push(t_stack *stack, int content);
-int     pop(t_stack *stack);
+// Funções de operações de pilha
 void    swap(t_stack *stack);
+void    sa(t_stack *a);
+void    sb(t_stack *b);
+void    ss(t_stack *a, t_stack *b);
+void    push(t_stack *stack, int content);
+void    pa(t_stack *a, t_stack *b);
+void    pb(t_stack *a, t_stack *b);
 void    rotate(t_stack *stack);
+void    ra(t_stack *a);
+void    rb(t_stack *b);
+void    rr(t_stack *a, t_stack *b);
 void    reverse_rotate(t_stack *stack);
+void    rra(t_stack *a);
+void    rrb(t_stack *b);
+void    rrr(t_stack *a, t_stack *b);
+
+// Funções de manipulação de pilha
 t_stack    *init_stack(void);
 void    free_stack(t_stack *stack);
+int     find_min(t_stack *stack);
+int     find_max(t_stack *stack);
+t_node    *find_last_node(t_stack *stack);
 
-// Funções de ordenação
-int     find_min(t_stack *a);
-void    move_min_to_b(t_stack *a, t_stack *b, int min_value);
-void    return_to_a(t_stack *a, t_stack *b);
-void    push_swap(t_stack *a);
+// Funções auxiliares
+int     pop(t_stack *stack);
+void    print_stack(t_stack *stack);
 
 #endif
