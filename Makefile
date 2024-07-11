@@ -6,41 +6,37 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 11:53:00 by dramos-j          #+#    #+#              #
-#    Updated: 2024/07/06 16:00:15 by marvin           ###   ########.fr        #
+#    Updated: 2024/07/11 16:28:06 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 LIBFTPRINTF = ./ft_printf/libftprintf.a
 LIBFTPRINTF_DIR = ./ft_printf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = push_swap.c stack_management.c swap.c push.c rotate.c reverse_rotate.c
-OBJS = $(SRCS:.c=.o) # change the source file to object file
-AR = ar rc # archive command to create a static library. r - replace, if the library already exists, c - create a new library
-RM = rm -rf # remove command. r - recursive, if the directory is not empty, f - force, ignore nonexistent files and arguments
-CP = cp # copy command. 
+SRCS = op_push.c op_reverse_rotate.c op_rotate.c op_swap.c stack_management.c stack_sort.c stack_utils.c check_args.c main.c
+OBJS = $(SRCS:.c=.o) # Altera os arquivos .c para .o para serem compilados
+RM = rm -rf # Comando para remover arquivos	e diretórios. -r remove recursivamente e -f força a remoção sem perguntar
 
-all: $(NAME) # make all will compile the library and the bonus
+all: $(NAME) # Comando para compilar o programa
 
-$(NAME): $(OBJS) # compile the library push_swap.a and the library libftprintf.a with the object files
+$(NAME): $(OBJS) # Compila a biblioteca e o programa. -C entra no diretório e executa o comando
 	$(MAKE) -C $(LIBFTPRINTF_DIR)
-	$(CP) $(LIBFTPRINTF) $(NAME)
-	$(AR) $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTPRINTF)
 
+%.o:%.c # Compila os arquivos .c para .o
+	$(CC) $(CFLAGS) -c $^ -o $@ 
 
-%.o:%.c # compile the source file to object file
-	$(CC) $(CFLAGS) -c $^ -o $@
-
-clean: # remove the object files in the library libftprintf.a and the push_swap.a
+clean: # remove os arquivos .o
 	$(MAKE) clean -C $(LIBFTPRINTF_DIR)
 	$(RM) $(OBJS)
 
-fclean: clean # make clean and remove the library push_swap.a and the library libftprintf.a
+fclean: clean # remove os arquivos .o e o executável
 	$(MAKE) fclean -C $(LIBFTPRINTF_DIR)
 	$(RM) $(NAME)
 
-re: fclean all # make fclean and make all
+re: fclean all # remove os arquivos .o e o executável e compila novamente
 
-.PHONY: all clean fclean re # make the commands all, clean, fclean, and re as phony targets so that they are not confused with files of the same name
-.SILENT: # silence the commands that are executed
+.PHONY: all clean fclean re # Indica que os comandos não são arquivos a serem compilados
+.SILENT: # Não exibe os comandos executados
