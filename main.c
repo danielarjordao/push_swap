@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/11 17:20:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/11 18:48:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int main(int argc, char **argv)
         free_stack(b);
         return (0);
     }
+
+    // Testando as funções, apagar antes de enviar
+    ft_printf("Stack A: ");
+    print_stack(a);
+
     if (is_sorted(a)) // Se a pilha A já estiver ordenada
         return (0);
     sort_stack(a); // Ordena a pilha A

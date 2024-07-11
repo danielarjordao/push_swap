@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/11 17:18:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/11 19:07:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void    rrr(t_stack *a, t_stack *b);
 // Funções de manipulação de pilha
 t_stack    *init_stack(void);
 void    free_stack(t_stack *stack);
+int     pop(t_stack *stack);
+
+// Funções utilitárias da pilha
 int     find_min(t_stack *stack);
 int     find_max(t_stack *stack);
 t_node    *find_last_node(t_stack *stack);
-
-// Funções utilitárias
-int     pop(t_stack *stack);
 void    print_stack(t_stack *stack);
 
-// Funções de ordenação
+// Funções de ordenação da pilha
 void    sort_stack(t_stack *a);
 int     is_sorted(t_stack *stack);
 void    simple_sort(t_stack *a);
@@ -69,7 +69,7 @@ void    simple_sort(t_stack *a);
 int     is_number(char *str);
 int     is_integer(char *str);
 int     is_duplicate(t_stack *stack, int num);
-int     countwords(char **words);
+int     count_args(char **argv);
 int     check_args(int argc, char **argv, t_stack *stack);
 
 #endif

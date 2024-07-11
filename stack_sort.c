@@ -40,7 +40,7 @@ void    simple_sort(t_stack *a)
         return ;
     while (!is_sorted(a)) // Enquanto a pilha não estiver ordenada
     {
-        if (a->top->content == find_min(a))
+        if (a->top->content == find_min(a) && a->top->next->content == find_max(a))
         {
             sa(a); // Se o menor elemento estiver no topo, aplica a operação sa
             ra(a); // Em seguida, aplica a operação ra

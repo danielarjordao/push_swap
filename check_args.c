@@ -56,37 +56,40 @@ int is_duplicate(t_stack *stack, int num)
     return (0); // Se o loop terminar, não é um número repetido
 }
 
-// Função para contar o número de palavras em um array de strings
-int countwords(char **words)
+// Função para contar o número de argumentos
+int count_args(char **argv)
 {
     int i;
 
     i = 0;
-    while (words[i]) // Enquanto houver palavras
-        i++; // Incrementa o contador
-    return (i); // Retorna o número de palavras
+    while (argv[i]) // Enquanto houver argumentos
+        i++; // Conta o argumento
+    return (i); // Retorna o número de argumentos
 }
 
 // Função para verificar se os argumentos são válidos
 int check_args(int argc, char **argv, t_stack *stack)
 {
-    int i;
+    int flag; // Se houver flag, deve ser considerado o primeiro argumento, pois após o split argv[0] não é mais o nome do programa
 
-    i = 1;
+    flag = 0; 
     if (argc == 2)
     {
-        argv = ft_split(argv[1], ' '); // Separa os argumentos em palavras
-        argc = countwords(argv); // Conta o número de palavras
-        i = 0; // Inicia a partir do primeiro argumento
+        argv = ft_split(argv[1], ' ');
+        argc = count_args(argv);
+        flag = 1; 
     }
-    while (i < argc) // Enquanto houver argumentos
+    argc--; // Decrementa o número de argumentos
+    while (argc > 0) // Enquanto i for menor que o número de argumentos
     {
-        if (!is_integer(argv[i])) // Se o argumento não for um número inteiro
+        if (!is_integer(argv[argc])) // Se o argumento não for um número inteiro
             return (0); // Argumento inválido
-        if (is_duplicate(stack, ft_atoi(argv[i]))) // Se o número for repetido
+        if (is_duplicate(stack, ft_atoi(argv[argc]))) // Se o número for repetido
             return (0); // Argumento inválido
-        push(stack, ft_atoi(argv[i])); // Adiciona o número à pilha
-        i++; // Avança para o próximo argumento
+        push(stack, ft_atoi(argv[argc])); // Adiciona o número à pilha
+        argc--; // Avança para o próximo argumento
     }
+    if (flag) // Se houver flag, adiciona o primeiro argumento à pilha
+        push(stack, ft_atoi(argv[0])); 
     return (1); // Se o loop terminar, os argumentos são válidos
 }
