@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 
     if (is_sorted(a)) // Se a pilha A já estiver ordenada
         return (0);
-    sort_stack(a); // Ordena a pilha A
+    sort_stack(a, b); // Ordena a pilha A
     
     // Testando as funções, apagar antes de enviar
     ft_printf("Stack A (sorted): ");

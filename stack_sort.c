@@ -12,10 +12,12 @@
 
 #include "push_swap.h"
 
-void    sort_stack(t_stack *a)
+void    sort_stack(t_stack *a, t_stack *b)
 {
     if (a->size <= 3)
         simple_sort(a); // Ordena a pilha com 3 elementos
+    else
+        advanced_sort(a, b); // Ordena a pilha com mais de 5 elementos
 }
 
 // Função para verificar se a pilha está ordenada
@@ -58,3 +60,16 @@ void    simple_sort(t_stack *a)
     }
 }
 
+// Função para ordenar pilhas com mais de 5 elementos
+void    advanced_sort(t_stack *a, t_stack *b)
+{
+    while (!is_sorted(a)) // Enquanto a pilha não estiver ordenada
+    {
+        if (a->top->content == find_min(a))
+            pb(a, b); // Se o menor elemento estiver no topo, aplica a operação pb
+        else 
+            ra(a); // Se o menor elemento estiver abaixo do topo, aplica a operação ra
+    }
+    while (b->size) // Enquanto a pilha B não estiver vazia
+        pa(a, b); // Aplica a operação pa
+}

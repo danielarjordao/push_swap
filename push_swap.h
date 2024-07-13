@@ -61,9 +61,11 @@ t_node    *find_last_node(t_stack *stack);
 void    print_stack(t_stack *stack);
 
 // Funções de ordenação da pilha
-void    sort_stack(t_stack *a);
+void    sort_stack(t_stack *a, t_stack *b);
 int     is_sorted(t_stack *stack);
 void    simple_sort(t_stack *a);
+void    advanced_sort(t_stack *a, t_stack *b);
+int     find_median(t_stack *stack);
 
 // Funções de verificação de argumentos
 int     is_number(char *str);
