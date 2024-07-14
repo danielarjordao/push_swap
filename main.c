@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/11 18:48:18 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/14 17:54:16 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,24 @@ int main(int argc, char **argv)
         free_stack(b);
         return (0);
     }
-
     // Testando as funções, apagar antes de enviar
-    ft_printf("Stack A: ");
-    print_stack(a);
+    printf("Antes de ordenar:\n");
+    t_node *node = a->current;
+    while (node) {
+        printf("Content: %d, Position: %d\n", node->content, node->position);
+        node = node->next;
+    }
 
     if (is_sorted(a)) // Se a pilha A já estiver ordenada
         return (0);
     sort_stack(a, b); // Ordena a pilha A
     
     // Testando as funções, apagar antes de enviar
-    ft_printf("Stack A (sorted): ");
+    ft_printf("\nDepois de ordenar a:\n");
     print_stack(a);
-    ft_printf("Stack B (empty): ");
+    ft_printf("\nDepois de ordenar b:\n");
     print_stack(b);
-    
+
     free_stack(a); // Libera a memória da pilha A
     free_stack(b); // Libera a memória da pilha B
     return (0);

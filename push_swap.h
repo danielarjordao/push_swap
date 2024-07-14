@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/11 19:07:49 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/14 17:48:34 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@
 // Estrutura de um nó da pilha
 typedef struct s_node
 {
-    int content;
-    struct s_node *next;
+    int content; 
+    int position;
+    struct  s_node *prev;
+    struct  s_node *next;
 }               t_node;
 
 // Estrutura da pilha
 typedef struct s_stack
 {
-    t_node	*top;
+    t_node	*current;
     int		size;
 }			t_stack;
 
@@ -53,6 +55,7 @@ void    rrr(t_stack *a, t_stack *b);
 t_stack    *init_stack(void);
 void    free_stack(t_stack *stack);
 int     pop(t_stack *stack);
+void update_positions(t_stack *stack);
 
 // Funções utilitárias da pilha
 int     find_min(t_stack *stack);

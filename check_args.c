@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_check.c                                       :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:15:48 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/11 15:15:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/14 14:48:27 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int is_duplicate(t_stack *stack, int num)
 {
     t_node  *current;
 
-    current = stack->top; // Inicia a partir do topo da pilha
+    current = stack->current; // Inicia a partir do currento da pilha
     while (current) // Enquanto houver nós na pilha
     {
         if (current->content == num) // Se o número for repetido
