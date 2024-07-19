@@ -18,8 +18,8 @@ int    find_min(t_stack *stack)
     int  min_value;
     t_node *next_node;
     
-    next_node = stack->current->next; // Salva o endereço do currento da pilha
-    min_value = stack->current->content; // Inicializa o valor mínimo com o primeiro valor da pilha
+    next_node = stack->top->next; // Salva o endereço do currento da pilha
+    min_value = stack->top->content; // Inicializa o valor mínimo com o primeiro valor da pilha
     while (next_node) // Enquanto houver nós na pilha
     {
         if (next_node->content < min_value) // Se o conteúdo do nó atual for menor que o valor mínimo
@@ -35,8 +35,8 @@ int    find_max(t_stack *stack)
     int  max_value;
     t_node *next_node;
     
-    next_node = stack->current->next; // Salva o endereço do currento da pilha
-    max_value = stack->current->content; // Inicializa o valor máximo com o primeiro valor da pilha
+    next_node = stack->top->next; // Salva o endereço do currento da pilha
+    max_value = stack->top->content; // Inicializa o valor máximo com o primeiro valor da pilha
     while (next_node) // Enquanto houver nós na pilha
     {
         if (next_node->content > max_value) // Se o conteúdo do nó atual for maior que o valor máximo
@@ -51,7 +51,7 @@ t_node    *find_last_node(t_stack *stack)
 {
     t_node *last_node;
     
-    last_node = stack->current; // Inicializa last_node para percorrer a pilha até o último nó
+    last_node = stack->top; // Inicializa last_node para percorrer a pilha até o último nó
     while (last_node->next) // Percorre a pilha até o último nó
         last_node = last_node->next;
     return (last_node); // Retorna o último nó
@@ -62,7 +62,7 @@ void    print_stack(t_stack *stack)
 {
     t_node  *current;
 
-    current = stack->current;
+    current = stack->top;
     while (current) // Enquanto houver nós na pilha
     {
         ft_printf("%d ", current->content); // Imprime o conteúdo do nó

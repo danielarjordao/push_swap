@@ -20,11 +20,11 @@ void    swap(t_stack *stack)
 
     if (stack->size < 2)
         return ;
-    current_node = stack->current; // Guarda o endereço do currento da pilha
+    current_node = stack->top; // Guarda o endereço do currento da pilha
     second_node = current_node->next; // Guarda o endereço do segundo nó da pilha
     current_node->next = second_node->next; // O próximo do antigo currento passa a ser o terceiro nó (se houver)
     second_node->next = current_node; // O próximo do segundo nó passa a ser o antigo currento
-    stack->current = second_node; // O novo currento da pilha é o segundo nó
+    stack->top = second_node; // O novo currento da pilha é o segundo nó
     update_positions(stack);
 }
 

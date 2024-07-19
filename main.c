@@ -32,15 +32,14 @@ int main(int argc, char **argv)
     }
     // Testando as funções, apagar antes de enviar
     printf("Antes de ordenar:\n");
-    t_node *node = a->current;
+    t_node *node = a->top;
     while (node) {
         printf("Content: %d, Position: %d\n", node->content, node->position);
         node = node->next;
     }
 
-    if (is_sorted(a)) // Se a pilha A já estiver ordenada
-        return (0);
-    sort_stack(a, b); // Ordena a pilha A
+    if (!is_sorted(a)) // Se a pilha A já estiver ordenada
+        sort_stack(a, b); // Ordena a pilha A
     
     // Testando as funções, apagar antes de enviar
     ft_printf("\nDepois de ordenar a:\n");

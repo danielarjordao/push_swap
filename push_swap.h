@@ -13,9 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
+#include <stdbool.h>
 #include "ft_printf/ft_printf.h"
 
 // Estrutura de um nó da pilha
@@ -30,7 +29,7 @@ typedef struct s_node
 // Estrutura da pilha
 typedef struct s_stack
 {
-    t_node	*current;
+    t_node	*top;
     int		size;
 }			t_stack;
 
@@ -68,13 +67,11 @@ void    sort_stack(t_stack *a, t_stack *b);
 int     is_sorted(t_stack *stack);
 void    simple_sort(t_stack *a);
 void    advanced_sort(t_stack *a, t_stack *b);
-int     find_median(t_stack *stack);
 
 // Funções de verificação de argumentos
-int     is_number(char *str);
 int     is_integer(char *str);
 int     is_duplicate(t_stack *stack, int num);
-int     count_args(char **argv);
+int    count_args(char **argv);
 int     check_args(int argc, char **argv, t_stack *stack);
 
 #endif

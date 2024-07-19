@@ -20,10 +20,10 @@ void rotate(t_stack *stack)
 
     if (stack->size < 2)
         return;
-    temp = stack->current; // Guarda o endereço do topo da pilha
+    temp = stack->top; // Guarda o endereço do topo da pilha
     last_node = find_last_node(stack); // Guarda o endereço do último nó da pilha
-    stack->current = stack->current->next; // O novo topo da pilha é o segundo nó
-    stack->current->prev = NULL; // O novo topo da pilha não tem nó anterior
+    stack->top = stack->top->next; // O novo topo da pilha é o segundo nó
+    stack->top->prev = NULL; // O novo topo da pilha não tem nó anterior
     last_node->next = temp; // O próximo do último nó é o antigo topo
     temp->prev = last_node; // O anterior do antigo topo é o último nó
     temp->next = NULL; // O próximo do antigo topo é NULL

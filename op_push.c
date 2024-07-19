@@ -20,11 +20,11 @@ void push(t_stack *stack, int content)
     if (!new_node)
         return;
     new_node->content = content;
-    new_node->next = stack->current; // O próximo nó do novo nó é o antigo atual
+    new_node->next = stack->top; // O próximo nó do novo nó é o antigo atual
     new_node->prev = NULL; // O novo nó é o novo atual, então não tem nó anterior
-    if (stack->current) 
-        stack->current->prev = new_node; // O antigo topo agora aponta para o novo nó como seu anterior
-    stack->current = new_node; // O novo nó é o novo topo da pilha
+    if (stack->top) 
+        stack->top->prev = new_node; // O antigo topo agora aponta para o novo nó como seu anterior
+    stack->top = new_node; // O novo nó é o novo topo da pilha
     stack->size++; // Incrementa o tamanho da pilha
     // Atualiza as posições dos nós na pilha
     update_positions(stack);

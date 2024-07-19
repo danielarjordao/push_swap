@@ -21,10 +21,10 @@ void reverse_rotate(t_stack *stack)
     previous_node = last_node->prev;  
     if (previous_node)
         previous_node->next = NULL; // O próximo do penúltimo nó é NULL, pois ele será o ultimo nó
-    last_node->next = stack->current; // O próximo do antigo último nó é o antigo topo
-    stack->current->prev = last_node;
+    last_node->next = stack->top; // O próximo do antigo último nó é o antigo topo
+    stack->top->prev = last_node;
     last_node->prev = NULL;
-    stack->current = last_node; // O novo topo da pilha é o antigo último nó
+    stack->top = last_node; // O novo topo da pilha é o antigo último nó
     // Atualiza as posições dos nós na pilha
     update_positions(stack);
 }

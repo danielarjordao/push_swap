@@ -20,7 +20,7 @@ t_stack    *init_stack(void)
     stack = (t_stack *)malloc(sizeof(t_stack));
     if (!stack) 
         return (NULL);
-    stack->current = NULL; // Inicianiza com o no atual
+    stack->top = NULL; // Inicianiza com o no atual
     stack->size = 0; // Inicializa o tamanho da pilha como 0
     return (stack);
 }
@@ -29,11 +29,11 @@ void    free_stack(t_stack *stack)
 {
     t_node *temp;
 
-    while (stack->current) // Enquanto houver nós na pilha
+    while (stack->top) // Enquanto houver nós na pilha
     {
-        temp = stack->current->next; // Salva o próximo nó
-        free(stack->current); // Libera o nó antigo
-        stack->current = temp; // O novo currento da pilha é o próximo nó
+        temp = stack->top->next; // Salva o próximo nó
+        free(stack->top); // Libera o nó antigo
+        stack->top = temp; // O novo currento da pilha é o próximo nó
     }
     free(stack); // Libera a pilha
 }
@@ -44,11 +44,11 @@ int    pop(t_stack *stack)
     t_node *temp;
     int content;
 
-    if (!stack->current)
+    if (!stack->top)
         return (0);
-    temp = stack->current; // Guarda o endereço do currento da pilha
-    content = stack->current->content; // Guarda o conteúdo do currento da pilha
-    stack->current = stack->current->next; // O novo currento da pilha é o próximo nó
+    temp = stack->top; // Guarda o endereço do currento da pilha
+    content = stack->top->content; // Guarda o conteúdo do currento da pilha
+    stack->top = stack->top->next; // O novo currento da pilha é o próximo nó
     free(temp); // Libera o nó antigo
     stack->size--; // Decrementa o tamanho da pilha
     return (content);
@@ -59,7 +59,7 @@ void update_positions(t_stack *stack)
     t_node *node;
     int pos;
     
-    node = stack->current;
+    node = stack->top;
     pos = 1;
     while (node) 
     {
