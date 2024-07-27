@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 11:53:00 by dramos-j          #+#    #+#              #
-#    Updated: 2024/07/11 16:28:06 by marvin           ###   ########.fr        #
+#    Updated: 2024/07/27 12:43:55 by dramos-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ $(NAME): $(OBJS) # Compila a biblioteca e o programa. -C entra no diretório e e
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTPRINTF)
 
 %.o:%.c # Compila os arquivos .c para .o
-	$(CC) $(CFLAGS) -c $^ -o $@ 
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 clean: # remove os arquivos .o
 	$(MAKE) clean -C $(LIBFTPRINTF_DIR)

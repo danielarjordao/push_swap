@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/20 15:49:55 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:16:47 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	advanced_sort(t_stack *a, t_stack *b);
 // Funções de verificação de argumentos
 int		is_integer(char *str);
 int		is_duplicate(t_stack *stack, int num);
-int		count_args(char **argv);
 void	free_argv(char **argv);
+int		fill_stack(int argc, char **argv, t_stack *stack, int flag);
 int		check_args(int argc, char **argv, t_stack *stack);
 
 // Funções de análise de custo

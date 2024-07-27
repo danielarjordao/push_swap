@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:15:48 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/20 15:10:33 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:24:49 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ int	is_duplicate(t_stack *stack, int content)
 	return (0);
 }
 
-int	count_args(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-		i++;
-	return (i);
-}
-
 void	free_argv(char **argv)
 {
 	int	i;
@@ -71,6 +61,21 @@ void	free_argv(char **argv)
 	free(argv);
 }
 
+int	fill_stack(int argc, char **argv, t_stack *stack, int flag)
+{
+	while (argc >= 0)
+	{
+		if (flag != 1 && argc == 0)
+			return (1);
+		if (!is_integer(argv[argc])
+			|| is_duplicate(stack, ft_atoi(argv[argc])))
+			return (0);
+		push(stack, ft_atoi(argv[argc]));
+		argc--;
+	}
+	return (1);
+}
+
 // Função para verificar se os argumentos são válidos
 int	check_args(int argc, char **argv, t_stack *stack)
 {
@@ -80,21 +85,19 @@ int	check_args(int argc, char **argv, t_stack *stack)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
-		argc = count_args(argv);
+		argc = 0;
+		while (argv[argc])
+			argc++;
 		flag = 1;
 	}
 	argc--;
-	while (argc > 0)
+	if (!fill_stack(argc, argv, stack, flag))
 	{
-		if (!is_integer(argv[argc])
-			|| is_duplicate(stack, ft_atoi(argv[argc])))
-			break ;
-		push(stack, ft_atoi(argv[argc]));
-		argc--;
+		if (flag)
+			free_argv(argv);
+		return (0);
 	}
 	if (flag)
-		push(stack, ft_atoi(argv[0]));
-	if (argv && flag)
 		free_argv(argv);
 	return (1);
 }

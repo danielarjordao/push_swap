@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:04:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/20 15:53:25 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:58:14 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	advanced_sort(t_stack *a, t_stack *b)
 		pb(a, b);
 	while (a->size > 3 && !is_sorted(a))
 	{
-
+		ft_printf("more than 3\n");
 	}
 }
