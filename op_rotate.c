@@ -6,13 +6,13 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:24:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/20 11:30:42 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:31:33 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Função para mover o nó do currento da pilha para o final da pilha
+// Função para mover o nó do topo da pilha para o final da pilha
 void	rotate(t_stack *stack)
 {
 	t_node	*temp;
@@ -30,21 +30,21 @@ void	rotate(t_stack *stack)
 	update_positions(stack);
 }
 
-// Função para mover o nó do currento da pilha a para o final da pilha
+// Função para mover o nó do topo da pilha a para o final da pilha
 void	ra(t_stack *a)
 {
 	rotate(a);
 	ft_printf("ra\n");
 }
 
-// Função para mover o nó do currento da pilha b para o final da pilha
+// Função para mover o nó do topo da pilha b para o final da pilha
 void	rb(t_stack *b)
 {
 	rotate(b);
 	ft_printf("rb\n");
 }
 
-// Função para mover o nó do currento das pilhas a e b para o final das pilhas
+// Função para mover o nó do topo das pilhas a e b para o final das pilhas
 void	rr(t_stack *a, t_stack *b)
 {
 	rotate(a);

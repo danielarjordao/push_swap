@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:04:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/27 14:58:14 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 18:25:12 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,28 @@ void	simple_sort(t_stack *a)
 
 void	advanced_sort(t_stack *a, t_stack *b)
 {
-	pb(a, b);
-	if (a->size > 3 && !is_sorted(a))
-		pb(a, b);
+	int	middle;
+
+	middle = find_middle(a);
 	while (a->size > 3 && !is_sorted(a))
+			pb(a, b);
+	simple_sort(a);
+	while (b->size)
 	{
-		ft_printf("more than 3\n");
+		if (b->top->content > find_max(a))
+		{
+			pa(a, b);
+			ra(a);
+		}
+		else if (b->top->content < find_min(a))
+			pa(a, b);
+		else
+		{
+			while (b->top->content > a->top->content)
+				ra(a);
+			pa(a, b);
+		}
 	}
+	while (!is_sorted(a))
+		ra(a);
 }

@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/27 15:16:47 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/27 18:20:01 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	update_positions(t_stack *stack);
 // Funções utilitárias da pilha
 int		find_min(t_stack *stack);
 int		find_max(t_stack *stack);
+int		find_median(t_stack *stack);
+void	sort_array(int *array, int size);
 t_node	*find_last_node(t_stack *stack);
 
 // Funções de ordenação da pilha
