@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 19:09:27 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/20 15:51:52 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:22:10 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,36 @@ void	update_positions(t_stack *stack)
 		node = node->next;
 	}
 }
+
+// Função para incluir um valor de ordem na pilha
+void	sort_value(t_stack *stack)
+{
+	t_node	*temp;
+	t_node	*highest;
+	int		value;
+	int		size;
+
+	size = stack->size;
+	while (size-- > 0)
+	{
+		temp = stack->top;
+		value = INT_MIN;
+		highest = NULL;
+		while (temp)
+		{
+			if (temp->content == INT_MIN && temp->sort_value == 0)
+				temp->sort_value = 1;
+			if (temp->content > value && temp->sort_value == 0)
+			{
+				value = temp->content;
+				highest = temp;
+				temp = stack->top;
+			}
+			else
+				temp = temp->next;
+		}
+		if (highest)
+			highest->sort_value = size;
+	}
+}
+

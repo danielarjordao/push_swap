@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/27 18:20:01 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:09:31 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_node
 {
 	int				content;
+	int				sort_value;
 	int				position;
 	struct s_node	*prev;
 	struct s_node	*next;
@@ -55,6 +56,7 @@ void	rrr(t_stack *a, t_stack *b);
 t_stack	*init_stack(void);
 void	free_stack(t_stack *stack);
 void	update_positions(t_stack *stack);
+void	sort_value(t_stack *stack);
 
 // Funções utilitárias da pilha
 int		find_min(t_stack *stack);
@@ -79,5 +81,9 @@ int		check_args(int argc, char **argv, t_stack *stack);
 // Funções de análise de custo
 void	cost_analysis(t_stack *a, t_stack *b);
 int		find_rotation_cost(t_stack *stack, int target);
+
+//Apagar
+void	print_stack(t_stack *stack);
+void	print_sort_values(t_stack *stack);
 
 #endif

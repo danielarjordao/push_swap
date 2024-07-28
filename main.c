@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/20 14:33:21 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/28 17:59:54 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ void	print_stack(t_stack *stack)
 	while (current)
 	{
 		ft_printf("%d ", current->content);
+		current = current->next;
+	}
+	ft_printf("\n");
+}
+
+// Função para imprimir os valores de ordenação da pilha
+void	print_sort_values(t_stack *stack)
+{
+	t_node	*current;
+
+	current = stack->top;
+	while (current)
+	{
+		ft_printf("%d ", current->sort_value);
 		current = current->next;
 	}
 	ft_printf("\n");
@@ -56,6 +70,8 @@ int	main(int argc, char **argv)
 		ft_printf("\nDepois de ordenar b:\n");
 		print_stack(b);
 	}
+	ft_printf("\n Valores de ordenação de a:\n");
+	print_sort_values(a);
 	free_stack(a);
 	free_stack(b);
 	return (0);

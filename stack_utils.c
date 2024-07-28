@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:40:05 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/27 18:27:28 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:37:10 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,4 @@ t_node	*find_last_node(t_stack *stack)
 	return (last_node);
 }
 
-int	find_middle(t_stack *stack)
-{
-	int		middle;
 
-	while (a->position > a->size / 2)
-	
-	}
-}
