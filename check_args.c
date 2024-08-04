@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:15:48 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/27 15:46:42 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/04 15:53:23 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	fill_stack(int argc, char **argv, t_stack *stack, int flag)
 		if (!is_integer(argv[argc])
 			|| is_duplicate(stack, ft_atoi(argv[argc])))
 			return (0);
-		push(stack, ft_atoi(argv[argc]));
+		push(stack, ft_atoi(argv[argc]), 0);
 		argc--;
 	}
 	return (1);

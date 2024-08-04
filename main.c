@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:51:45 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/28 17:59:54 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:09:14 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ int	main(int argc, char **argv)
 		free_stack(b);
 		return (0);
 	}
+	/*
 	ft_printf("Antes de ordenar:\n");
 	print_stack(a);
 	ft_printf("\nComandos para ordenar:\n");
+	*/
 	if (!is_sorted(a))
 		sort_stack(a, b);
+	/*
 	ft_printf("\nDepois de ordenar a:\n");
 	print_stack(a);
 	if (b->size)
@@ -72,6 +75,9 @@ int	main(int argc, char **argv)
 	}
 	ft_printf("\n Valores de ordenação de a:\n");
 	print_sort_values(a);
+	ft_printf("\n Valores de ordenação de b:\n");
+	print_sort_values(b);
+	*/
 	free_stack(a);
 	free_stack(b);
 	return (0);
