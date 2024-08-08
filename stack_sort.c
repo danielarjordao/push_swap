@@ -71,7 +71,7 @@ void	advanced_sort(t_stack *a, t_stack *b)
 	middle = a->size / 2;
 	while (a->size > 3)
 	{
-		if (a->top->sort_value <= middle)
+		if (a->top->sort_value < middle)
 			pb(a, b);
 		else
 			ra(a);
