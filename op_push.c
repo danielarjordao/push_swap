@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:08:03 by marvin            #+#    #+#             */
-/*   Updated: 2024/08/04 15:57:03 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:34:54 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	pop(t_stack *stack)
 	return (content);
 }
 
-void	push(t_stack *stack, int content, int sort_value)
+void	push(t_stack *stack, int content)
 {
 	t_node	*new_node;
 
@@ -37,7 +37,6 @@ void	push(t_stack *stack, int content, int sort_value)
 	if (!new_node)
 		return ;
 	new_node->content = content;
-	new_node->sort_value = sort_value;
 	new_node->next = stack->top;
 	new_node->prev = NULL;
 	if (stack->top)
@@ -50,13 +49,13 @@ void	push(t_stack *stack, int content, int sort_value)
 
 void	pa(t_stack *a, t_stack *b)
 {
-	push(a, pop(b), b->top->sort_value);
+	push(a, pop(b));
 	ft_printf("pa\n");
 }
 
 // Função para mover o nó do currento da pilha b para o currento da pilha a
 void	pb(t_stack *a, t_stack *b)
 {
-	push(b, pop(a), a->top->sort_value);
+	push(b, pop(a));
 	ft_printf("pb\n");
 }

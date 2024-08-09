@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:04:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/08/04 17:07:31 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:50:58 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort_stack(t_stack *a, t_stack *b)
 		simple_sort(a);
 	else
 	{
-		sort_value(a);
+		update_positions(a);
 		advanced_sort(a, b);
 	}
 }
@@ -66,23 +66,14 @@ void	simple_sort(t_stack *a)
 
 void	advanced_sort(t_stack *a, t_stack *b)
 {
-	int	middle;
-
-	middle = a->size / 2;
-	while (a->size > 3)
-	{
-		if (a->top->sort_value < middle)
-			pb(a, b);
-		else
-			ra(a);
-	}
-	simple_sort(a);
+	save_three(a, b);
+	if (a->size == 3)
+		simple_sort(a);
 	while (b->size)
 	{
-		if (b->top->sort_value == a->top->sort_value - 1)
-			pa(a, b);
-		else
-			rb(b);
+		goal_position(a, b);
+		calculate_cost(a, b);
+		find_cheapest(a, b);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:40:05 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/04 16:48:52 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:14:22 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ t_node	*find_last_node(t_stack *stack)
 	while (last_node->next)
 		last_node = last_node->next;
 	return (last_node);
+}
+
+int	find_position(t_stack *stack, int target)
+{
+	t_node	*node;
+	int		pos;
+
+	node = stack->top;
+	pos = 1;
+	while (node)
+	{
+		if (node->content == target)
+			return (pos);
+		pos++;
+		node = node->next;
+	}
+	return (0);
 }
 
 

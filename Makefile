@@ -6,7 +6,7 @@
 #    By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 11:53:00 by dramos-j          #+#    #+#              #
-#    Updated: 2024/07/27 18:22:15 by dramos-j         ###   ########.fr        #
+#    Updated: 2024/08/09 16:54:02 by dramos-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFTPRINTF = ./ft_printf/libftprintf.a
 LIBFTPRINTF_DIR = ./ft_printf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = op_push.c op_reverse_rotate.c op_rotate.c op_swap.c stack_management.c stack_sort.c stack_utils.c check_args.c main.c
+SRCS = op_push.c op_reverse_rotate.c op_rotate.c op_swap.c stack_management.c stack_sort_utils.c stack_sort.c stack_utils.c check_args.c main.c
 OBJS = $(SRCS:.c=.o) # Altera os arquivos .c para .o para serem compilados
 RM = rm -rf # Comando para remover arquivos	e diretórios. -r remove recursivamente e -f força a remoção sem perguntar
 

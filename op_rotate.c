@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:24:54 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/27 16:31:33 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:43:43 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,45 @@ void	rr(t_stack *a, t_stack *b)
 	rotate(a);
 	rotate(b);
 	ft_printf("rr\n");
+}
+void	rotate_a_and_b(t_stack *a, t_stack *b, int cost_a, int cost_b)
+{
+	if (cost_a > 0 && cost_b > 0)
+	{
+		while (cost_a > 0 && cost_b > 0)
+		{
+			rr(a, b);
+			cost_a--;
+			cost_b--;
+		}
+	}
+	else if (cost_a < 0 && cost_b < 0)
+	{
+		while (cost_a < 0 && cost_b < 0)
+		{
+			rrr(a, b);
+			cost_a++;
+			cost_b++;
+		}
+	}
+	while  (cost_a > 0)
+	{
+		ra(a);
+		cost_a--;
+	}
+	while (cost_a < 0)
+	{
+		rra(a);
+		cost_a++;
+	}
+	while (cost_b > 0)
+	{
+		rb(b);
+		cost_b--;
+	}
+	while (cost_b < 0)
+	{
+		rrb(b);
+		cost_b++;
+	}
 }

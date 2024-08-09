@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 19:09:27 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/07/28 18:22:10 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:36:09 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	update_positions(t_stack *stack)
 	pos = 1;
 	while (node)
 	{
-		node->position = pos++;
+		node->current_position = pos++;
 		node = node->next;
 	}
 }
-
+/*
 // Função para incluir um valor de ordem na pilha
 void	sort_value(t_stack *stack)
 {
@@ -83,5 +83,5 @@ void	sort_value(t_stack *stack)
 		if (highest)
 			highest->sort_value = size;
 	}
-}
+}*/
 

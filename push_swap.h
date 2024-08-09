@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 11:49:36 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/04 15:51:48 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:19:42 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 typedef struct s_node
 {
 	int				content;
-	int				sort_value;
-	int				position;
+	int				current_position;
+	int				goal_position;
+	int				cost_a;
+	int				cost_b;
 	struct s_node	*prev;
 	struct s_node	*next;
 }			t_node;
@@ -40,7 +42,7 @@ void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 int		pop(t_stack *stack);
-void	push(t_stack *stack, int content, int sort_value);
+void	push(t_stack *stack, int content);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 void	rotate(t_stack *stack);
@@ -61,9 +63,17 @@ void	sort_value(t_stack *stack);
 // Funções utilitárias da pilha
 int		find_min(t_stack *stack);
 int		find_max(t_stack *stack);
-int		find_median(t_stack *stack);
-void	sort_array(int *array, int size);
 t_node	*find_last_node(t_stack *stack);
+int		find_position(t_stack *stack, int target);
+
+// Funções de auxílio à ordenação
+void	save_three(t_stack *a, t_stack *b);
+void	goal_position(t_stack *a, t_stack *b);
+void	calculate_cost(t_stack *a, t_stack *b);
+void	find_cheapest(t_stack *a, t_stack *b);
+void	sort_to_push(t_stack *a);
+
+void	rotate_a_and_b(t_stack *a, t_stack *b, int cost_a, int cost_b);
 
 // Funções de ordenação da pilha
 void	sort_stack(t_stack *a, t_stack *b);
