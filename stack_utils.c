@@ -6,12 +6,12 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:40:05 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/09 18:14:22 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:49:23 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 // Função para encontrar o valor mínimo na pilha
 int	find_min(t_stack *stack)
 {
@@ -45,18 +45,23 @@ int	find_max(t_stack *stack)
 	}
 	return (max_value);
 }
+*/
 
 // Função para encontrar o ultimo nó na pilha
-t_node	*find_last_node(t_stack *stack)
+t_stack	*find_bottom(t_stack *stack)
 {
-	t_node	*last_node;
-
-	last_node = stack->top;
-	while (last_node->next)
-		last_node = last_node->next;
-	return (last_node);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
 
+t_stack	*find_second_to_last(t_stack *stack)
+{
+	while (stack->next->next)
+		stack = stack->next;
+	return (stack);
+}
+/*
 int	find_position(t_stack *stack, int target)
 {
 	t_node	*node;
@@ -73,5 +78,6 @@ int	find_position(t_stack *stack, int target)
 	}
 	return (0);
 }
+*/
 
 

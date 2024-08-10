@@ -6,44 +6,42 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:27:21 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/20 11:30:04 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:19:36 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate(t_stack *stack)
+void	reverse_rotate(t_stack **stack)
 {
-	t_node	*previous_node;
-	t_node	*last_node;
+	t_stack	*temp;
+	t_stack	*bottom;
+	t_stack	*second_last;
 
-	last_node = find_last_node(stack);
-	previous_node = last_node->prev;
-	if (previous_node)
-		previous_node->next = NULL;
-	last_node->next = stack->top;
-	stack->top->prev = last_node;
-	last_node->prev = NULL;
-	stack->top = last_node;
-	update_positions(stack);
+	bottom = find_bottom(*stack);
+	second_last = find_second_to_last(*stack);
+	temp = *stack;
+	*stack = bottom;
+	(*stack)->next = temp;
+	second_last->next = NULL;
 }
 
 // Função para mover o último nó da pilha a para o currento da pilha
-void	rra(t_stack *a)
+void	rra(t_stack **a)
 {
 	reverse_rotate(a);
 	ft_printf("rra\n");
 }
 
 // Função para mover o último nó da pilha b para o currento da pilha
-void	rrb(t_stack *b)
+void	rrb(t_stack **b)
 {
 	reverse_rotate(b);
 	ft_printf("rrb\n");
 }
 
 // Função para mover o último nó das pilhas a e b para o currento das pilhas
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack **a, t_stack **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);

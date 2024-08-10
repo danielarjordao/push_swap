@@ -6,56 +6,33 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:08:03 by marvin            #+#    #+#             */
-/*   Updated: 2024/08/09 16:34:54 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/10 17:18:07 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Função para remover o nó do topo da pilha
-// e retornar o conteúdo do nó (pop off)
-int	pop(t_stack *stack)
+void	push(t_stack **src, t_stack	**dst)
 {
-	t_node	*temp;
-	int		content;
+	t_stack	*temp;
 
-	if (!stack->top)
-		return (0);
-	temp = stack->top;
-	content = stack->top->content;
-	stack->top = stack->top->next;
-	free(temp);
-	stack->size--;
-	return (content);
-}
-
-void	push(t_stack *stack, int content)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
+	if (*src == NULL)
 		return ;
-	new_node->content = content;
-	new_node->next = stack->top;
-	new_node->prev = NULL;
-	if (stack->top)
-		stack->top->prev = new_node;
-	stack->top = new_node;
-	stack->size++;
-	update_positions(stack);
+	temp = (*src)->next;
+	(*src)->next = *dst;
+	*dst = *src;
+	*src = temp;
 }
 
-
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack **a, t_stack **b)
 {
-	push(a, pop(b));
+	push(b, a);
 	ft_printf("pa\n");
 }
 
 // Função para mover o nó do currento da pilha b para o currento da pilha a
-void	pb(t_stack *a, t_stack *b)
+void	pb(t_stack **a, t_stack **b)
 {
-	push(b, pop(a));
+	push(a, b);
 	ft_printf("pb\n");
 }

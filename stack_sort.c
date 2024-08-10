@@ -6,64 +6,66 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:04:08 by marvin            #+#    #+#             */
-/*   Updated: 2024/08/09 18:50:58 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:02:44 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_stack(t_stack *a, t_stack *b)
+void	sort_stack(t_stack **a, t_stack **b)
 {
-	if (a->size == 2)
+	sort_value(*a);
+	if ((*a)->size == 2)
 		sa(a);
-	else if (a->size == 3)
+	else if ((*a)->size == 3)
 		simple_sort(a);
-	else
-	{
-		update_positions(a);
-		advanced_sort(a, b);
-	}
+	if (*b)
+		ft_printf("Error\n");
+//	else
+//	{
+//		sort_value(a);
+//		advanced_sort(a, b);
+//	}
 }
 
 // Função para verificar se a pilha está ordenada
 int	is_sorted(t_stack *stack)
 {
-	t_node	*current;
-
-	current = stack->top;
-	while (current->next)
+	if (!stack)
+		return (1);
+	while(stack->next)
 	{
-		if (current->content > current->next->content)
+		if (stack->content > stack->next->content)
 			return (0);
-		current = current->next;
+		stack = stack->next;
 	}
 	return (1);
 }
 
 // Função para ordenar pilhas com 3 elementos
-void	simple_sort(t_stack *a)
+void	simple_sort(t_stack **a)
 {
-	while (!is_sorted(a))
+	while (!is_sorted(*a))
 	{
-		if (a->top->content == find_min(a)
-			&& a->top->next->content == find_max(a))
+		if ((*a)->sort_value == 1
+			&& find_bottom(*a)->sort_value == 3)
 		{
 			sa(a);
 			ra(a);
 		}
-		else if (a->top->content == find_max(a))
+		else if ((*a)->sort_value == 3)
 		{
 			ra(a);
-			if (a->top->content > a->top->next->content)
+			if ((*a)->sort_value > (*a)->next->sort_value)
 				sa(a);
 		}
-		else if (a->top->next->content == find_max(a))
+		else if ((*a)->next->sort_value == 3)
 			rra(a);
 		else
 			sa(a);
 	}
 }
-
+/*
 void	advanced_sort(t_stack *a, t_stack *b)
 {
 	save_three(a, b);
@@ -71,10 +73,12 @@ void	advanced_sort(t_stack *a, t_stack *b)
 		simple_sort(a);
 	while (b->size)
 	{
-		goal_position(a, b);
+		assign_goal(a, b);
 		calculate_cost(a, b);
 		find_cheapest(a, b);
+		print_stack(a);
+		print_stack(b);
 	}
-}
-
+	sort_to_finish(a);
+}*/
 

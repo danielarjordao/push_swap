@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:15:48 by marvin            #+#    #+#             */
-/*   Updated: 2024/08/09 16:36:27 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/10 18:11:04 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	is_integer(char *str)
 // Função para verificar se um argumento é um número repetido
 int	is_duplicate(t_stack *stack, int content)
 {
-	t_node	*top;
+	t_stack	*temp;
 
-	top = stack->top;
-	while (top)
+	temp = stack;
+	while (temp)
 	{
-		if (top->content == content)
+		if (temp->content == content)
 			return (1);
-		top = top->next;
+		temp = temp->next;
 	}
 	return (0);
 }
@@ -61,23 +61,23 @@ void	free_argv(char **argv)
 	free(argv);
 }
 
-int	fill_stack(int argc, char **argv, t_stack *stack, int flag)
+int	fill_stack(int argc, char **argv, t_stack **stack, int flag)
 {
 	while (argc >= 0)
 	{
 		if (flag != 1 && argc == 0)
 			return (1);
 		if (!is_integer(argv[argc])
-			|| is_duplicate(stack, ft_atoi(argv[argc])))
+			|| is_duplicate(*stack, ft_atoi(argv[argc])))
 			return (0);
-		push(stack, ft_atoi(argv[argc]));
+		add_args(*stack, ft_atoi(argv[argc]));
 		argc--;
 	}
 	return (1);
 }
 
 // Função para verificar se os argumentos são válidos
-int	check_args(int argc, char **argv, t_stack *stack)
+int	check_args(int argc, char **argv, t_stack **stack)
 {
 	int	flag;
 
