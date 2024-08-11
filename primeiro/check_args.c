@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:28:19 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:28:19 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/07/11 15:15:48 by marvin            #+#    #+#             */
+/*   Updated: 2024/08/10 18:11:04 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Função para verificar se um argumento é um número inteiro
 int	is_integer(char *str)
 {
 	long long	num;
@@ -32,6 +33,7 @@ int	is_integer(char *str)
 	return (1);
 }
 
+// Função para verificar se um argumento é um número repetido
 int	is_duplicate(t_stack *stack, int content)
 {
 	t_stack	*temp;
@@ -46,54 +48,56 @@ int	is_duplicate(t_stack *stack, int content)
 	return (0);
 }
 
-void	add_args(t_stack **stack, int content)
-{
-	t_stack	*temp;
-	t_stack	*new;
-
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (!new)
-		return ;
-	new->content = content;
-	new->sort_value = 0;
-	new->goal_position = 0;
-	new->cost_a = 0;
-	new->cost_b = 0;
-	new->next = NULL;
-	if (!*stack)
-	{
-		new->current_position = 1;
-		*stack = new;
-	}
-	else
-	{
-		temp = find_last(*stack);
-		new->current_position = temp->current_position + 1;
-		temp->next = new;
-	}
-}
-
-int	get_args(int argc, char **argv, t_stack **a)
+void	free_argv(char **argv)
 {
 	int	i;
 
+	i = 0;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
+}
+
+int	fill_stack(int argc, char **argv, t_stack **stack, int flag)
+{
+	while (argc >= 0)
+	{
+		if (flag != 1 && argc == 0)
+			return (1);
+		if (!is_integer(argv[argc])
+			|| is_duplicate(*stack, ft_atoi(argv[argc])))
+			return (0);
+		add_args(*stack, ft_atoi(argv[argc]));
+		argc--;
+	}
+	return (1);
+}
+
+// Função para verificar se os argumentos são válidos
+int	check_args(int argc, char **argv, t_stack **stack)
+{
+	int	flag;
+
+	flag = 0;
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
 		argc = 0;
 		while (argv[argc])
 			argc++;
-		i = 0;
+		flag = 1;
 	}
-	else
-		i = 1;
-	while (i < argc)
+	argc--;
+	if (!fill_stack(argc, argv, stack, flag))
 	{
-		if (!is_integer(argv[i]) 
-			|| is_duplicate(*a, ft_atoi(argv[i])))
-				return (0);
-		add_args(a, ft_atoi(argv[i]));
-		i++;
+		if (flag)
+			free_argv(argv);
+		return (0);
 	}
+	if (flag)
+		free_argv(argv);
 	return (1);
 }
