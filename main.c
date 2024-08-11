@@ -28,13 +28,20 @@ void	print_stack(t_stack *stack)
 int	main(int argc, char **argv)
 {
 	t_stack *a;
+	t_stack *b;
 
 	a = NULL;
+	b = NULL;
 	if (!get_args(argc, argv, &a))
 	{
 		ft_printf("Error\n");
 		return (0);
 	}
+	if (!is_sorted(a))
+		sort_stack(&a, &b);
+	ft_printf("stack a\n");
 	print_stack(a);
+	ft_printf("stack b\n");
+	print_stack(b);
 	return (1);
 }

@@ -1,52 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:24:34 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:24:34 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/11 16:56:57 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/11 16:56:57 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*find_last(t_stack *stack)
+void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*temp;
 
-	temp = stack;
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
+	if (*src == NULL)
+		return ;
+	temp = (*src)->next;
+	(*src)->next = *dest;
+	*dest = *src;
+	*src = temp;
 }
 
-int	is_sorted(t_stack *stack)
+void	pa(t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp->next)
-	{
-		if (temp->content > temp->next->content)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+	push(b, a);
+	ft_printf("pa\n");
 }
 
-int	stack_size(t_stack *stack)
+void	pb(t_stack **a, t_stack **b)
 {
-	int		size;
-	t_stack	*temp;
-
-	size = 0;
-	temp = stack;
-	while (temp)
-	{
-		size++;
-		temp = temp->next;
-	}
-	return (size);
+	push(a, b);
+	ft_printf("pb\n");
 }

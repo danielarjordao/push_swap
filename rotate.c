@@ -1,52 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:24:34 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:24:34 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/11 17:04:57 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/11 17:04:57 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*find_last(t_stack *stack)
+void	rotate(t_stack **stack)
 {
 	t_stack	*temp;
+	t_stack	*last;
 
-	temp = stack;
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
+	if (!*stack || !(*stack)->next)
+		return ;
+	temp = *stack;
+	*stack = (*stack)->next;
+	last = find_last(*stack);
+	last->next = temp;
+	temp->next = NULL;
 }
 
-int	is_sorted(t_stack *stack)
+void	ra(t_stack **a)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp->next)
-	{
-		if (temp->content > temp->next->content)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+	rotate(a);
+	ft_printf("ra\n");
 }
 
-int	stack_size(t_stack *stack)
+void	rb(t_stack **b)
 {
-	int		size;
-	t_stack	*temp;
+	rotate(b);
+	ft_printf("rb\n");
+}
 
-	size = 0;
-	temp = stack;
-	while (temp)
-	{
-		size++;
-		temp = temp->next;
-	}
-	return (size);
+void	rr(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+	ft_printf("rr\n");
 }

@@ -1,52 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:24:34 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:24:34 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/11 17:08:15 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/11 17:08:15 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*find_last(t_stack *stack)
+void	reverse_rotate(t_stack **stack)
 {
 	t_stack	*temp;
+	t_stack	*last;
 
-	temp = stack;
-	while (temp->next)
+	if (!*stack || !(*stack)->next)
+		return ;
+	temp = *stack;
+	while (temp->next->next)
 		temp = temp->next;
-	return (temp);
+	last = temp->next;
+	temp->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
-int	is_sorted(t_stack *stack)
+void	rra(t_stack **a)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp->next)
-	{
-		if (temp->content > temp->next->content)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+	reverse_rotate(a);
+	ft_printf("rra\n");
 }
 
-int	stack_size(t_stack *stack)
+void	rrb(t_stack **b)
 {
-	int		size;
-	t_stack	*temp;
+	reverse_rotate(b);
+	ft_printf("rrb\n");
+}
 
-	size = 0;
-	temp = stack;
-	while (temp)
-	{
-		size++;
-		temp = temp->next;
-	}
-	return (size);
+void	rrr(t_stack **a, t_stack **b)
+{
+	reverse_rotate(a);
+	reverse_rotate(b);
+	ft_printf("rrr\n");
 }

@@ -1,52 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:24:34 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:24:34 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/11 17:03:22 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/11 17:03:22 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*find_last(t_stack *stack)
+void	swap(t_stack **stack)
 {
 	t_stack	*temp;
 
-	temp = stack;
-	while (temp->next)
-		temp = temp->next;
-	return (temp);
+	if (!*stack || !(*stack)->next)
+		return ;
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	temp->next = *stack;
+	*stack = temp;
 }
 
-int	is_sorted(t_stack *stack)
+void	sa(t_stack **a)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp->next)
-	{
-		if (temp->content > temp->next->content)
-			return (0);
-		temp = temp->next;
-	}
-	return (1);
+	swap(a);
+	ft_printf("sa\n");
 }
 
-int	stack_size(t_stack *stack)
+void	sb(t_stack **b)
 {
-	int		size;
-	t_stack	*temp;
+	swap(b);
+	ft_printf("sb\n");
+}
 
-	size = 0;
-	temp = stack;
-	while (temp)
-	{
-		size++;
-		temp = temp->next;
-	}
-	return (size);
+void	ss(t_stack **a, t_stack **b)
+{
+	swap(a);
+	swap(b);
+	ft_printf("ss\n");
 }

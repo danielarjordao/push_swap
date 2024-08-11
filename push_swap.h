@@ -35,5 +35,33 @@ void	add_args(t_stack **stack, int content);
 
 // Funções para retirar informações da stack
 t_stack	*find_last(t_stack *stack);
+int		stack_size(t_stack *stack);
+int		is_sorted(t_stack *stack);
+
+// Funções para manipular a stack
+void    add_sort_value(t_stack **stack);
+void	save_three(t_stack **a, t_stack **b);
+
+// Funções para ordenar a stack
+void	simple_sort(t_stack **a);
+void	sort_stack(t_stack **a, t_stack **b);
+
+// Operações de stack
+void	swap(t_stack **stack);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	push(t_stack **dest, t_stack **src);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	rotate(t_stack **stack);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	reverse_rotate(t_stack **stack);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
+
 
 #endif

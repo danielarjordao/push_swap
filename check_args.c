@@ -62,7 +62,7 @@ void	add_args(t_stack **stack, int content)
 	new->next = NULL;
 	if (!*stack)
 	{
-		new->current_position = 1;
+		new->current_position = 0;
 		*stack = new;
 	}
 	else
