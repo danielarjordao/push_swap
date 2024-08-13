@@ -18,13 +18,13 @@
 
 typedef struct s_stack
 {
-    int				content;
-    int				sort_value;
-    int				current_position;
-    int				goal_position;
-    int				cost_a;
-    int				cost_b;
-    struct s_stack	*next;
+	int				content;
+	int				sort_value;
+	int				current_position;
+	int				goal_position;
+	int				cost_a;
+	int				cost_b;
+	struct s_stack	*next;
 }			t_stack;
 
 // Funções para receber e validar argumentos
@@ -37,10 +37,13 @@ void	add_args(t_stack **stack, int content);
 t_stack	*find_last(t_stack *stack);
 int		stack_size(t_stack *stack);
 int		is_sorted(t_stack *stack);
+int		find_goal_position(t_stack **stack, int b_sort);
 
 // Funções para manipular a stack
-void    add_sort_value(t_stack **stack);
-void	save_three(t_stack **a, t_stack **b);
+void	add_sort_values(t_stack **stack);
+void	update_positions(t_stack **stack);
+void	keep_three(t_stack **a, t_stack **b);
+void	add_goal_positions(t_stack **a, t_stack **b);
 
 // Funções para ordenar a stack
 void	simple_sort(t_stack **a);
@@ -63,5 +66,7 @@ void	rra(t_stack **a);
 void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
+//Auxiliares para debug
+void	print_stack(t_stack *stack);
 
 #endif

@@ -50,3 +50,36 @@ int	stack_size(t_stack *stack)
 	}
 	return (size);
 }
+
+int	find_goal_position(t_stack **stack, int b_sort)
+{
+	int		limit;
+	int		goal;
+	t_stack	*temp;
+
+	limit = INT_MAX;
+	goal = 0;
+	temp = *stack;
+	while (temp)
+	{
+		if (temp->sort_value < limit && temp->sort_value > b_sort)
+		{
+			limit = temp->sort_value;
+			goal = temp->current_position;
+		}
+		temp = temp->next;
+	}
+	if (limit != INT_MAX)
+		return (goal);
+	temp = *stack;
+	while (temp)
+	{
+		if (temp->sort_value < limit)
+		{
+			limit = temp->sort_value;
+			goal = temp->current_position;
+		}
+		temp = temp->next;
+	}
+	return (goal);
+}

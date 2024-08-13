@@ -15,33 +15,44 @@
 void	simple_sort(t_stack **a)
 {
 	int		first;
+	int		second;
 	int		third;
 
 	first = (*a)->sort_value;
+	second = (*a)->next->sort_value;
 	third = (*a)->next->next->sort_value;
 	while (!is_sorted(*a))
 	{
-		if (first == 0 && third == 1)
+		if (first < second && first < third)
 		{
 			sa(a);
 			ra(a);
 		}
-		else if (first == 2)
+		else if (first > second && first > third)
 		{
 			ra(a);
-			if (third == 0)
+			if (second > third)
 				sa(a);
 		}
-		else if (first == 1 && third == 0)
+		else if (third < first && third < second)
 			rra(a);
-		else if (first == 1 && third == 2) // 2 1 3
+		else
 			sa(a);
 	}
 }
 
 void	advanced_sort(t_stack **a, t_stack **b)
 {
-	save_three(a, b);
+	t_stack	*temp;
+
+	keep_three(a, b);
+	simple_sort(a);
+	temp = *b;
+	while (temp)
+	{
+		add_goal_positions(a, b);
+		temp = temp->next;
+	}
 }
 
 void	sort_stack(t_stack **a, t_stack **b)
@@ -49,8 +60,7 @@ void	sort_stack(t_stack **a, t_stack **b)
 	int		size;
 
 	size = stack_size(*a);
-	ft_printf("size: %d\n", size);
-	add_sort_value(a);
+	add_sort_values(a);
 	if (size == 2)
 		sa(a);
 	else if (size == 3)

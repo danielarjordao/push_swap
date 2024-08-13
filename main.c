@@ -19,7 +19,7 @@ void	print_stack(t_stack *stack)
 	temp = stack;
 	while (temp)
 	{
-		ft_printf("%d \0", temp->content);
+		ft_printf("%d ", temp->content);
 		temp = temp->next;
 	}
 	ft_printf("\n");

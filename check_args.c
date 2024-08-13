@@ -56,19 +56,16 @@ void	add_args(t_stack **stack, int content)
 		return ;
 	new->content = content;
 	new->sort_value = 0;
+	new->current_position = 0;
 	new->goal_position = 0;
 	new->cost_a = 0;
 	new->cost_b = 0;
 	new->next = NULL;
 	if (!*stack)
-	{
-		new->current_position = 0;
 		*stack = new;
-	}
 	else
 	{
 		temp = find_last(*stack);
-		new->current_position = temp->current_position + 1;
 		temp->next = new;
 	}
 }
@@ -89,7 +86,7 @@ int	get_args(int argc, char **argv, t_stack **a)
 		i = 1;
 	while (i < argc)
 	{
-		if (!is_integer(argv[i]) 
+		if (!is_integer(argv[i])
 			|| is_duplicate(*a, ft_atoi(argv[i])))
 				return (0);
 		add_args(a, ft_atoi(argv[i]));
