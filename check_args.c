@@ -51,15 +51,16 @@ void	add_args(t_stack **stack, int content)
 	t_stack	*temp;
 	t_stack	*new;
 
-	new = (t_stack *)malloc(sizeof(t_stack));
+	temp = *stack;
+	new = (t_stack *)malloc(sizeof * new);
 	if (!new)
 		return ;
 	new->content = content;
 	new->sort_value = 0;
-	new->current_position = 0;
-	new->goal_position = 0;
-	new->cost_a = 0;
-	new->cost_b = 0;
+	new->current_position = -1;
+	new->goal_position = -1;
+	new->cost_a = -1;
+	new->cost_b = -1;
 	new->next = NULL;
 	if (!*stack)
 		*stack = new;
@@ -73,7 +74,9 @@ void	add_args(t_stack **stack, int content)
 int	get_args(int argc, char **argv, t_stack **a)
 {
 	int	i;
+	int	split;
 
+	split = 0;
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
@@ -81,6 +84,7 @@ int	get_args(int argc, char **argv, t_stack **a)
 		while (argv[argc])
 			argc++;
 		i = 0;
+		split = 1;
 	}
 	else
 		i = 1;
@@ -88,9 +92,15 @@ int	get_args(int argc, char **argv, t_stack **a)
 	{
 		if (!is_integer(argv[i])
 			|| is_duplicate(*a, ft_atoi(argv[i])))
-				return (0);
+		{
+			if (split)
+				free_argv(argv);
+			return (0);
+		}
 		add_args(a, ft_atoi(argv[i]));
 		i++;
 	}
+	if (split)
+		free_argv(argv);
 	return (1);
 }

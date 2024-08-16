@@ -39,14 +39,14 @@ int	is_sorted(t_stack *stack)
 int	stack_size(t_stack *stack)
 {
 	int		size;
-	t_stack	*temp;
 
 	size = 0;
-	temp = stack;
-	while (temp)
+	if (!stack)
+		return (0);
+	while (stack)
 	{
+		stack = stack->next;
 		size++;
-		temp = temp->next;
 	}
 	return (size);
 }
@@ -82,4 +82,69 @@ int	find_goal_position(t_stack **stack, int b_sort)
 		temp = temp->next;
 	}
 	return (goal);
+}
+
+int	nbr_pos(int nbr)
+{
+	if (nbr < 0)
+		return (nbr * -1);
+	return (nbr);
+}
+void	move(t_stack **a, t_stack **b, int cost_a, int cost_b)
+{
+	int		temp_cost_a;
+	int		temp_cost_b;
+
+	temp_cost_a = cost_a;
+	temp_cost_b = cost_b;
+	if (temp_cost_a < 0 && temp_cost_b < 0)
+	{
+		while (temp_cost_a++ < 0 && temp_cost_b++ < 0)
+			rrr(a, b);
+	}
+	else if (temp_cost_a > 0 && temp_cost_b > 0)
+	{
+		while (temp_cost_a-- > 0 && temp_cost_b-- > 0)
+			rr(a, b);
+	}
+	while (temp_cost_a)
+	{
+		if (temp_cost_a < 0)
+		{
+			rra(a);
+			temp_cost_a++;
+		}
+		else if (temp_cost_a > 0)
+		{
+			ra(a);
+			temp_cost_a--;
+		}
+	}
+	while (temp_cost_b != 0)
+	{
+		if (temp_cost_b > 0)
+		{
+			rb(b);
+			temp_cost_b--;
+		}
+		else if (temp_cost_b < 0)
+		{
+			rrb(b);
+			temp_cost_b++;
+		}
+	}
+	pa(a, b);
+}
+
+void	free_argv(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 }

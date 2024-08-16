@@ -25,6 +25,18 @@ void	print_stack(t_stack *stack)
 	ft_printf("\n");
 }
 
+void	free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	while (*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *a;
@@ -35,13 +47,14 @@ int	main(int argc, char **argv)
 	if (!get_args(argc, argv, &a))
 	{
 		ft_printf("Error\n");
+		free_stack(&a);
 		return (0);
 	}
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
-	ft_printf("stack a\n");
+	ft_printf("\nDepois de ordenar a:\n");
 	print_stack(a);
-	ft_printf("stack b\n");
-	print_stack(b);
+	free_stack(&a);
+	free_stack(&b);
 	return (1);
 }

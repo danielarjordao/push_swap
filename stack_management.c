@@ -98,3 +98,66 @@ void	add_goal_positions(t_stack **a, t_stack **b)
 		temp_b = temp_b->next;
 	}
 }
+
+void	calculate_cost(t_stack **a, t_stack **b)
+{
+	t_stack	*temp_a;
+	t_stack	*temp_b;
+	int		size_a;
+	int		size_b;
+
+	temp_a = *a;
+	temp_b = *b;
+	size_a = stack_size(temp_a);
+	size_b = stack_size(temp_b);
+	while (temp_b)
+	{
+		temp_b->cost_b = temp_b->current_position;
+		if (temp_b->current_position > size_b / 2)
+			temp_b->cost_b = (size_b - temp_b->current_position) * -1;
+		temp_b->cost_a = temp_b->goal_position;
+		if (temp_b->goal_position > size_a / 2)
+			temp_b->cost_a = (size_a - temp_b->goal_position) * -1;
+		temp_b = temp_b->next;
+	}
+}
+
+void	move_cheapest(t_stack **a, t_stack **b)
+{
+	t_stack	*temp_b;
+	int		cheapest;
+	int		cost_a;
+	int		cost_b;
+
+	temp_b = *b;
+	cheapest = INT_MAX;
+	while (temp_b)
+	{
+		if (nbr_pos(temp_b->cost_a) + nbr_pos(temp_b->cost_b) < nbr_pos(cheapest))
+		{
+			cheapest = nbr_pos(temp_b->cost_a) + nbr_pos(temp_b->cost_b);
+			cost_a = temp_b->cost_a;
+			cost_b = temp_b->cost_b;
+		}
+		temp_b = temp_b->next;
+	}
+	move(a, b, cost_a, cost_b);
+}
+
+void	sort_to_finish(t_stack **a)
+{
+	int		first;
+
+	first = (*a)->sort_value;
+	if (first > stack_size(*a) / 2)
+	{
+		while ((*a)->sort_value != 0)
+			ra(a);
+	}
+	else
+	{
+		while ((*a)->sort_value != 0)
+			rra(a);
+	}
+}
+
