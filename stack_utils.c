@@ -99,13 +99,21 @@ void	move(t_stack **a, t_stack **b, int cost_a, int cost_b)
 	temp_cost_b = cost_b;
 	if (temp_cost_a < 0 && temp_cost_b < 0)
 	{
-		while (temp_cost_a++ < 0 && temp_cost_b++ < 0)
+		while (temp_cost_a < 0 && temp_cost_b < 0)
+		{
 			rrr(a, b);
+			temp_cost_a++;
+			temp_cost_b++;
+		}
 	}
 	else if (temp_cost_a > 0 && temp_cost_b > 0)
 	{
-		while (temp_cost_a-- > 0 && temp_cost_b-- > 0)
+		while (temp_cost_a > 0 && temp_cost_b > 0)
+		{
 			rr(a, b);
+			temp_cost_a--;
+			temp_cost_b--;
+		}
 	}
 	while (temp_cost_a)
 	{

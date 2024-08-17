@@ -43,20 +43,16 @@ void	simple_sort(t_stack **a)
 
 void	advanced_sort(t_stack **a, t_stack **b)
 {
-	int		i;
-
-	i = 7;
 	keep_three(a, b);
 	simple_sort(a);
-	while (i)
+	while (*b)
 	{
 		add_goal_positions(a, b);
 		calculate_cost(a, b);
 		move_cheapest(a, b);
-		i--;
 	}
-	//if (!is_sorted(*a))
-	//	sort_to_finish(a);
+	if (!is_sorted(*a))
+		sort_to_finish(a);
 }
 
 void	sort_stack(t_stack **a, t_stack **b)

@@ -52,8 +52,6 @@ int	main(int argc, char **argv)
 	}
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
-	ft_printf("\nDepois de ordenar a:\n");
-	print_stack(a);
 	free_stack(&a);
 	free_stack(&b);
 	return (1);
