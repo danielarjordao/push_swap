@@ -15,9 +15,10 @@ LIBFTPRINTF = ./ft_printf/libftprintf.a
 LIBFTPRINTF_DIR = ./ft_printf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = check_args.c main.c \
+SRCS =  main.c check_args.c \
 		swap.c push.c rotate.c reverse_rotate.c \
-		stack_management.c stack_utils.c stack_sort.c 
+		stack_manipulation.c stack_sort.c \
+		stack_sort_utils.c stack_utils.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -rf
 

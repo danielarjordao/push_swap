@@ -12,55 +12,10 @@
 
 #include "push_swap.h"
 
-void	add_sort_values(t_stack **stack)
-{
-	t_stack	*temp;
-	t_stack	*highest;
-	int		content;
-	int		size;
-
-	size = stack_size(*stack);
-	while (--size > 0)
-	{
-		temp = *stack;
-		content = INT_MIN;
-		highest = NULL;
-		while (temp)
-		{
-			if (temp->content == INT_MIN && temp->sort_value == 0)
-				temp->sort_value = 1;
-			if (temp->content > content && temp->sort_value == 0)
-			{
-				content = temp->content;
-				highest = temp;
-				temp = *stack;
-			}
-			else
-				temp = temp->next;
-		}
-		if (highest)
-			highest->sort_value = size;
-	}
-}
-
-void	update_positions(t_stack **stack)
-{
-	t_stack	*temp;
-	int		pos;
-
-	pos = 0;
-	temp = *stack;
-	while (temp)
-	{
-		temp->current_position = pos++;
-		temp = temp->next;
-	}
-}
-
 void	keep_three(t_stack **a, t_stack **b)
 {
 	int		size_a;
-	int	size_b;
+	int		size_b;
 
 	size_a = stack_size(*a);
 	size_b = 0;
@@ -124,22 +79,22 @@ void	calculate_cost(t_stack **a, t_stack **b)
 
 void	move_cheapest(t_stack **a, t_stack **b)
 {
-	t_stack	*temp_b;
+	t_stack	*temp;
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;
 
-	temp_b = *b;
+	temp = *b;
 	cheapest = INT_MAX;
-	while (temp_b)
+	while (temp)
 	{
-		if (nbr_pos(temp_b->cost_a) + nbr_pos(temp_b->cost_b) < nbr_pos(cheapest))
+		if (nbr_pos(temp->cost_a) + nbr_pos(temp->cost_b) < nbr_pos(cheapest))
 		{
-			cheapest = nbr_pos(temp_b->cost_a) + nbr_pos(temp_b->cost_b);
-			cost_a = temp_b->cost_a;
-			cost_b = temp_b->cost_b;
+			cheapest = nbr_pos(temp->cost_a) + nbr_pos(temp->cost_b);
+			cost_a = temp->cost_a;
+			cost_b = temp->cost_b;
 		}
-		temp_b = temp_b->next;
+		temp = temp->next;
 	}
 	move(a, b, cost_a, cost_b);
 }
@@ -160,4 +115,3 @@ void	sort_to_finish(t_stack **a)
 			rra(a);
 	}
 }
-

@@ -104,3 +104,16 @@ int	get_args(int argc, char **argv, t_stack **a)
 		free_argv(argv);
 	return (1);
 }
+
+void	free_argv(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
+}

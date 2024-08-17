@@ -25,22 +25,10 @@ void	print_stack(t_stack *stack)
 	ft_printf("\n");
 }
 
-void	free_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	while (*stack)
-	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
-}
-
 int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
