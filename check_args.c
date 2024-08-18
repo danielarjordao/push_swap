@@ -12,6 +12,46 @@
 
 #include "push_swap.h"
 
+int	get_args(int argc, char **argv, t_stack **a)
+{
+	int	i;
+	int	split;
+
+	split = 0;
+	if (argc == 2)
+		argv = split_args(argv[1], &argc, &split, &i);
+	else
+		i = 1;
+	while (i < argc)
+	{
+		if (!is_integer(argv[i])
+			|| is_duplicate(*a, ft_atoi(argv[i])))
+		{
+			if (split)
+				free_argv(argv);
+			return (0);
+		}
+		add_args(a, ft_atoi(argv[i]));
+		i++;
+	}
+	if (split)
+		free_argv(argv);
+	return (1);
+}
+
+char	**split_args(char *argv, int *argc, int *split, int *i)
+{
+	char	**new_argv;
+
+	new_argv = ft_split(argv, ' ');
+	*argc = 0;
+	while (new_argv[*argc])
+		(*argc)++;
+	*i = 0;
+	*split = 1;
+	return (new_argv);
+}
+
 int	is_integer(char *str)
 {
 	long long	num;
@@ -44,65 +84,6 @@ int	is_duplicate(t_stack *stack, int content)
 		temp = temp->next;
 	}
 	return (0);
-}
-
-void	add_args(t_stack **stack, int content)
-{
-	t_stack	*temp;
-	t_stack	*new;
-
-	temp = *stack;
-	new = (t_stack *)malloc(sizeof * new);
-	if (!new)
-		return ;
-	new->content = content;
-	new->sort_value = 0;
-	new->current_position = -1;
-	new->goal_position = -1;
-	new->cost_a = -1;
-	new->cost_b = -1;
-	new->next = NULL;
-	if (!*stack)
-		*stack = new;
-	else
-	{
-		temp = find_last(*stack);
-		temp->next = new;
-	}
-}
-
-int	get_args(int argc, char **argv, t_stack **a)
-{
-	int	i;
-	int	split;
-
-	split = 0;
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		argc = 0;
-		while (argv[argc])
-			argc++;
-		i = 0;
-		split = 1;
-	}
-	else
-		i = 1;
-	while (i < argc)
-	{
-		if (!is_integer(argv[i])
-			|| is_duplicate(*a, ft_atoi(argv[i])))
-		{
-			if (split)
-				free_argv(argv);
-			return (0);
-		}
-		add_args(a, ft_atoi(argv[i]));
-		i++;
-	}
-	if (split)
-		free_argv(argv);
-	return (1);
 }
 
 void	free_argv(char **argv)

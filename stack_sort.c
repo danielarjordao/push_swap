@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+int	is_sorted(t_stack *stack)
+{
+	t_stack	*temp;
+
+	temp = stack;
+	while (temp->next)
+	{
+		if (temp->content > temp->next->content)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
+
 void	simple_sort(t_stack **a)
 {
 	int		first;

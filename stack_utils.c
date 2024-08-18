@@ -12,18 +12,29 @@
 
 #include "push_swap.h"
 
-int	is_sorted(t_stack *stack)
+void	add_args(t_stack **stack, int content)
 {
 	t_stack	*temp;
+	t_stack	*new;
 
-	temp = stack;
-	while (temp->next)
+	temp = *stack;
+	new = (t_stack *)malloc(sizeof * new);
+	if (!new)
+		return ;
+	new->content = content;
+	new->sort_value = 0;
+	new->current_position = -1;
+	new->goal_position = -1;
+	new->cost_a = -1;
+	new->cost_b = -1;
+	new->next = NULL;
+	if (!*stack)
+		*stack = new;
+	else
 	{
-		if (temp->content > temp->next->content)
-			return (0);
-		temp = temp->next;
+		temp = find_last(*stack);
+		temp->next = new;
 	}
-	return (1);
 }
 
 int	stack_size(t_stack *stack)

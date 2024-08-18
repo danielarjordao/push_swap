@@ -48,7 +48,7 @@ void	add_goal_positions(t_stack **a, t_stack **b)
 	goal = 0;
 	while (temp_b)
 	{
-		goal = find_goal_position(a, temp_b->sort_value);
+		find_goal_position(a, temp_b->sort_value, &goal);
 		temp_b->goal_position = goal;
 		temp_b = temp_b->next;
 	}

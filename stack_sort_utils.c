@@ -27,8 +27,6 @@ void	add_sort_values(t_stack **stack)
 		highest = NULL;
 		while (temp)
 		{
-			if (temp->content == INT_MIN && temp->sort_value == 0)
-				temp->sort_value = 1;
 			if (temp->content > content && temp->sort_value == 0)
 			{
 				content = temp->content;
@@ -38,42 +36,37 @@ void	add_sort_values(t_stack **stack)
 			else
 				temp = temp->next;
 		}
-		if (highest)
-			highest->sort_value = size;
+		highest->sort_value = size;
 	}
 }
 
-int	find_goal_position(t_stack **stack, int b_sort)
+void	find_goal_position(t_stack **stack, int b_sort, int *goal)
 {
 	int		limit;
-	int		goal;
 	t_stack	*temp;
 
 	limit = INT_MAX;
-	goal = 0;
 	temp = *stack;
 	while (temp)
 	{
 		if (temp->sort_value < limit && temp->sort_value > b_sort)
 		{
 			limit = temp->sort_value;
-			goal = temp->current_position;
+			*goal = temp->current_position;
 		}
 		temp = temp->next;
 	}
-	if (limit != INT_MAX)
-		return (goal);
-	temp = *stack;
+	if (limit == INT_MAX)
+		temp = *stack;
 	while (temp)
 	{
 		if (temp->sort_value < limit)
 		{
 			limit = temp->sort_value;
-			goal = temp->current_position;
+			*goal = temp->current_position;
 		}
 		temp = temp->next;
 	}
-	return (goal);
 }
 
 int	nbr_pos(int nbr)
@@ -85,54 +78,49 @@ int	nbr_pos(int nbr)
 
 void	move(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
-	int		temp_cost_a;
-	int		temp_cost_b;
-
-	temp_cost_a = cost_a;
-	temp_cost_b = cost_b;
-	if (temp_cost_a < 0 && temp_cost_b < 0)
+	if (cost_a != 0 && cost_b != 0)
+		move_both(a, b, &cost_a, &cost_b);
+	while (cost_a < 0)
 	{
-		while (temp_cost_a < 0 && temp_cost_b < 0)
-		{
-			rrr(a, b);
-			temp_cost_a++;
-			temp_cost_b++;
-		}
+		rra(a);
+		cost_a++;
 	}
-	else if (temp_cost_a > 0 && temp_cost_b > 0)
+	while (cost_a > 0)
 	{
-		while (temp_cost_a > 0 && temp_cost_b > 0)
-		{
-			rr(a, b);
-			temp_cost_a--;
-			temp_cost_b--;
-		}
+		ra(a);
+		cost_a--;
 	}
-	while (temp_cost_a)
+	while (cost_b > 0)
 	{
-		if (temp_cost_a < 0)
-		{
-			rra(a);
-			temp_cost_a++;
-		}
-		else if (temp_cost_a > 0)
-		{
-			ra(a);
-			temp_cost_a--;
-		}
+		rb(b);
+		cost_b--;
 	}
-	while (temp_cost_b != 0)
+	while (cost_b < 0)
 	{
-		if (temp_cost_b > 0)
-		{
-			rb(b);
-			temp_cost_b--;
-		}
-		else if (temp_cost_b < 0)
-		{
-			rrb(b);
-			temp_cost_b++;
-		}
+		rrb(b);
+		cost_b++;
 	}
 	pa(a, b);
+}
+
+void	move_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
+{
+	if (*cost_a < 0 && *cost_b < 0)
+	{
+		while (*cost_a < 0 && *cost_b < 0)
+		{
+			rrr(a, b);
+			(*cost_a)++;
+			(*cost_b)++;
+		}
+	}
+	else if (*cost_a > 0 && *cost_b > 0)
+	{
+		while (*cost_a > 0 && *cost_b > 0)
+		{
+			rr(a, b);
+			(*cost_a)--;
+			(*cost_b)--;
+		}
+	}
 }
