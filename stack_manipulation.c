@@ -81,6 +81,7 @@ void	move_cheapest(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
 	int		cheapest;
+	int		total_cost;
 	int		cost_a;
 	int		cost_b;
 
@@ -88,9 +89,10 @@ void	move_cheapest(t_stack **a, t_stack **b)
 	cheapest = INT_MAX;
 	while (temp)
 	{
-		if (nbr_pos(temp->cost_a) + nbr_pos(temp->cost_b) < nbr_pos(cheapest))
+		total_cost = nbr_pos(temp->cost_a) + nbr_pos(temp->cost_b);
+		if (total_cost < cheapest)
 		{
-			cheapest = nbr_pos(temp->cost_a) + nbr_pos(temp->cost_b);
+			cheapest = total_cost;
 			cost_a = temp->cost_a;
 			cost_b = temp->cost_b;
 		}
@@ -104,14 +106,8 @@ void	sort_to_finish(t_stack **a)
 	int		first;
 
 	first = (*a)->sort_value;
-	if (first > stack_size(*a) / 2)
-	{
-		while ((*a)->sort_value != 0)
-			ra(a);
-	}
-	else
-	{
-		while ((*a)->sort_value != 0)
+	while ((*a)->sort_value && first > stack_size(*a) / 2)
+		ra(a);
+	while ((*a)->sort_value && first <= stack_size(*a) / 2)
 			rra(a);
-	}
 }
