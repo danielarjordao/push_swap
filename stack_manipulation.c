@@ -19,7 +19,7 @@ void	keep_three(t_stack **a, t_stack **b)
 
 	size_a = stack_size(*a);
 	size_b = 0;
-	while (size_a > 6 && size_b < size_a / 2)
+	while (size_a > 3 && size_b < size_a / 2)
 	{
 		if ((*a)->sort_value <= size_a / 2)
 		{
