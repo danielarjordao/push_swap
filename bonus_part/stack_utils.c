@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 // Add a new argument to the stack
 void	add_args(t_stack **stack, int content)

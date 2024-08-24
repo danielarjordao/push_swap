@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 15:25:29 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:25:29 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/24 16:03:32 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/24 16:03:32 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-/*
+#include "checker.h"
+
 void	print_stack(t_stack *stack)
 {
 	t_stack	*temp;
@@ -24,7 +24,7 @@ void	print_stack(t_stack *stack)
 	}
 	ft_printf("\n");
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -36,13 +36,9 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!check_args(argc, argv, &a))
 	{
-		ft_printf("Error\n");
 		free_stack(&a);
 		return (0);
 	}
-	if (!is_sorted(a))
-		sort_stack(&a, &b);
 	free_stack(&a);
 	free_stack(&b);
-	return (1);
 }

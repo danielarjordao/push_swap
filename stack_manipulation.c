@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+// First, push half of the stack with the lowest values to stack b
+// Then, keep 3 elements from the highest half of the stack in stack a
 void	keep_three(t_stack **a, t_stack **b)
 {
 	int		size_a;
@@ -37,6 +39,9 @@ void	keep_three(t_stack **a, t_stack **b)
 	}
 }
 
+// Update the actual position of the elements in stack a and b
+// Go through the stack b and find the best position to insert the element
+// Assign the goal position to the element
 void	add_goal_positions(t_stack **a, t_stack **b)
 {
 	t_stack	*temp_b;
@@ -54,6 +59,11 @@ void	add_goal_positions(t_stack **a, t_stack **b)
 	}
 }
 
+// Calculate the cost of moving the elements to the goal position
+// The cost_b is its current position, if it is in the first half of the stack
+// If it is not, the cost_b is the current position minus the size_b negated
+// The cost_a is the goal position, if it is in the first half of the stack
+// If it is not, the cost_a is the goal position minus the size_a negated
 void	calculate_cost(t_stack **a, t_stack **b)
 {
 	t_stack	*temp_a;
@@ -77,6 +87,10 @@ void	calculate_cost(t_stack **a, t_stack **b)
 	}
 }
 
+// Calculate the total cost of moving the elements to the goal position
+// Use nbr_pos to get the absolute value of the cost
+// Assign the cost to the element with the lowest total cost
+// Move the element to stack a
 void	move_cheapest(t_stack **a, t_stack **b)
 {
 	t_stack	*temp;
@@ -101,6 +115,9 @@ void	move_cheapest(t_stack **a, t_stack **b)
 	move(a, b, cost_a, cost_b);
 }
 
+// Here, the stack a is almost sorted
+// The elements are in the right position, but the stack is not sorted
+// Sort the stack with rotations or reverse rotations to finish the sorting
 void	sort_to_finish(t_stack **a)
 {
 	int		first;

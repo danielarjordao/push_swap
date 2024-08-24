@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 // First, check if the arguments are in the form of a string
 // If they are, split them into an array of strings

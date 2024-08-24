@@ -28,7 +28,7 @@ typedef struct s_stack
 }			t_stack;
 
 // check_args.c
-int		get_args(int argc, char **argv, t_stack **a);
+int		check_args(int argc, char **argv, t_stack **a);
 char	**split_args(char *argv, int *argc, int *split, int *i);
 int		is_integer(char *str);
 int		is_duplicate(t_stack *stack, int content);
@@ -72,7 +72,7 @@ void	sort_to_finish(t_stack **a);
 
 // stack_sort_utils.c
 void	add_sort_values(t_stack **stack);
-void	find_goal_position(t_stack **stack, int b_sort, int *goal);
+void	find_goal_position(t_stack **a, int b_sort, int *goal);
 int		nbr_pos(int nbr);
 void	move(t_stack **a, t_stack **b, int cost_a, int cost_b);
 void	move_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b);
