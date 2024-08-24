@@ -84,7 +84,4 @@ t_stack	*find_last(t_stack *stack);
 void	update_positions(t_stack **stack);
 void	free_stack(t_stack **stack);
 
-// apagar
-void	print_stack(t_stack *stack);
-
 #endif

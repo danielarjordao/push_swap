@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 void	print_stack(t_stack *stack)
 {
 	t_stack	*temp;
@@ -24,7 +24,7 @@ void	print_stack(t_stack *stack)
 	}
 	ft_printf("\n");
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -32,6 +32,8 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
+	if (argc < 2)
+		return (0);
 	if (!get_args(argc, argv, &a))
 	{
 		ft_printf("Error\n");

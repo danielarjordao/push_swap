@@ -109,5 +109,5 @@ void	sort_to_finish(t_stack **a)
 	while ((*a)->sort_value && first > stack_size(*a) / 2)
 		ra(a);
 	while ((*a)->sort_value && first <= stack_size(*a) / 2)
-			rra(a);
+		rra(a);
 }

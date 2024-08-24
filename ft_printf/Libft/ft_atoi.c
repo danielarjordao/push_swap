@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.co      +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:16:25 by dramos-j          #+#    #+#             */
-/*   Updated: 2023/11/04 12:58:31 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/24 11:53:46 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long int	ft_atoi(const char *nptr)
 {
-	size_t	i;
-	int		s;
-	int		nb;
+	size_t			i;
+	int				s;
+	long int		nb;
 
 	i = 0;
 	s = 1;
@@ -37,7 +37,8 @@ int	ft_atoi(const char *nptr)
 		nb = nb + (nptr[i] - '0');
 		i++;
 	}
-	return (nb * s);
+	nb = nb * s;
+	return (nb);
 }
 /*
 int	main()
