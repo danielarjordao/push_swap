@@ -38,22 +38,6 @@ void	add_args(t_stack **stack, int content)
 	}
 }
 
-// Get the size of the stack
-int	stack_size(t_stack *stack)
-{
-	int		size;
-
-	size = 0;
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		stack = stack->next;
-		size++;
-	}
-	return (size);
-}
-
 // Find the last element of the stack
 t_stack	*find_last(t_stack *stack)
 {
@@ -65,19 +49,19 @@ t_stack	*find_last(t_stack *stack)
 	return (temp);
 }
 
-// Update the positions of the stack
-void	update_positions(t_stack **stack)
+// Check if the stack is sorted
+int	is_sorted(t_stack *stack)
 {
 	t_stack	*temp;
-	int		pos;
 
-	pos = 0;
-	temp = *stack;
-	while (temp)
+	temp = stack;
+	while (temp->next)
 	{
-		temp->current_position = pos++;
+		if (temp->content > temp->next->content)
+			return (0);
 		temp = temp->next;
 	}
+	return (1);
 }
 
 // Free the stack

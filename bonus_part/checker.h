@@ -15,6 +15,7 @@
 
 # include <limits.h>
 # include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_stack
 {
@@ -34,11 +35,33 @@ int		is_integer(char *str);
 int		is_duplicate(t_stack *stack, int content);
 void	free_argv(char **argv);
 
+// swap.c
+void	swap(t_stack **stack);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+
+// push.c
+void	push(t_stack **dest, t_stack **src);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+
+// rotate.c
+void	rotate(t_stack **stack);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+
+// reverse_rotate.c
+void	reverse_rotate(t_stack **stack);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
+
 // stack_utils.c
 void	add_args(t_stack **stack, int content);
-int		stack_size(t_stack *stack);
 t_stack	*find_last(t_stack *stack);
-void	update_positions(t_stack **stack);
+int		is_sorted(t_stack *stack);
 void	free_stack(t_stack **stack);
 
 #endif
