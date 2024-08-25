@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:25:29 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:25:29 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:49:46 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2)
-		return (0);
+		return (1);
 	if (!check_args(argc, argv, &a))
 	{
 		ft_printf("Error\n");
 		free_stack(&a);
-		return (0);
+		return (1);
 	}
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
 	free_stack(&a);
 	free_stack(&b);
-	return (1);
+	return (0);
 }

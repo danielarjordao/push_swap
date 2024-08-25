@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/11 17:03:22 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 17:03:22 by dramos-j         ###   ########.fr       */
+/*   Created: 2024/08/24 16:02:17 by dramos-j          #+#    #+#             */
+/*   Updated: 2024/08/24 16:02:17 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	swap(t_stack **stack)
-{
-	t_stack	*temp;
+# include "get_next_line/get_next_line.h"
+# include "../push_swap.h"
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	temp = (*stack)->next;
-	(*stack)->next = temp->next;
-	temp->next = *stack;
-	*stack = temp;
-}
+int		check_command(char *command, t_stack **a, t_stack **b);
+int		check_command2(char *command, t_stack **a, t_stack **b);
+void	print_return(t_stack *a, t_stack *b);
 
-void	sa(t_stack **a)
-{
-	swap(a);
-}
-
-void	sb(t_stack **b)
-{
-	swap(b);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	swap(a);
-	swap(b);
-}
+#endif

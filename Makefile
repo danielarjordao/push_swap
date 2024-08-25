@@ -15,29 +15,38 @@ LIBFTPRINTF = ./ft_printf/libftprintf.a
 LIBFTPRINTF_DIR = ./ft_printf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS =  main.c check_args.c \
+SRCS = check_args.c \
 		swap.c push.c rotate.c reverse_rotate.c \
 		stack_manipulation.c stack_sort.c \
 		stack_sort_utils.c stack_utils.c
+MAIN = main.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -rf
+CHECKER = checker
+SRCS_BONUS = ./bonus/checker.c ./bonus/get_next_line/get_next_line.c \
+			./bonus/get_next_line/get_next_line_utils.c
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(MAIN)
 	$(MAKE) -C $(LIBFTPRINTF_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTPRINTF)
+	$(CC) $(CFLAGS) -o $(NAME) $(MAIN) $(OBJS) $(LIBFTPRINTF)
 
-%.o:%.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+bonus: $(OBJS) $(OBJS_BONUS)
+	$(MAKE) -C $(LIBFTPRINTF_DIR)
+	$(CC) $(CFLAGS) -o $(CHECKER) $(OBJS) $(OBJS_BONUS) $(LIBFTPRINTF)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(MAKE) clean -C $(LIBFTPRINTF_DIR)
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFTPRINTF_DIR)
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(CHECKER)
 
 re: fclean all
 

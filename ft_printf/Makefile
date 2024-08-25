@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dramos-j <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 12:24:30 by dramos-j          #+#    #+#              #
-#    Updated: 2023/11/18 15:43:38 by dramos-j         ###   ########.fr        #
+#    Updated: 2024/08/25 15:23:06 by dramos-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFTDIR = ./Libft
 SRCS = ft_printf.c ft_format.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putptr.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra	
+CFLAGS = -Wall -Werror -Wextra
 AR = ar rc
 RM = rm -rf
 CP = cp
@@ -24,7 +24,7 @@ CP = cp
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	${MAKE} bonus -C ${LIBFTDIR}
+	${MAKE} -C ${LIBFTDIR}
 	${CP} ${LIBFT} ${NAME}
 	$(AR) $(NAME) $(OBJS)
 

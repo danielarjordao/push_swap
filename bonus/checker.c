@@ -11,46 +11,52 @@
 /* ************************************************************************** */
 
 #include "checker.h"
-/*
-void	print_stack(t_stack *stack)
+
+int	check_command2(char *command, t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
-
-	temp = stack;
-	while (temp)
+	if (!ft_strncmp(command, "rra", 3))
+		reverse_rotate(a);
+	else if (!ft_strncmp(command, "rrb", 3))
+		reverse_rotate(b);
+	else if (!ft_strncmp(command, "rrr", 3))
 	{
-		ft_printf("%d ", temp->content);
-		temp = temp->next;
+		reverse_rotate(a);
+		reverse_rotate(b);
 	}
-	ft_printf("\n");
-}*/
+	else if (!ft_strncmp(command, "ra", 2))
+		rotate(a);
+	else if (!ft_strncmp(command, "rb", 2))
+		rotate(b);
+	else if (!ft_strncmp(command, "rr", 2))
+	{
+		rotate(a);
+		rotate(b);
+	}
+	else
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	return (1);
+}
 
-int	check_command(char *command, t_stack *a, t_stack *b)
+int	check_command(char *command, t_stack **a, t_stack **b)
 {
 	if (!ft_strncmp(command, "sa", 2))
-		sa(&a);
+		swap(a);
 	else if (!ft_strncmp(command, "sb", 2))
-		sb(&b);
+		swap(b);
 	else if (!ft_strncmp(command, "ss", 2))
-		ss(&a, &b);
+	{
+		swap(a);
+		swap(b);
+	}
 	else if (!ft_strncmp(command, "pa", 2))
-		pa(&a, &b);
+		push(b, a);
 	else if (!ft_strncmp(command, "pb", 2))
-		pb(&a, &b);
-	else if (!ft_strncmp(command, "rra", 3))
-		rra(&a);
-	else if (!ft_strncmp(command, "rrb", 3))
-		rrb(&b);
-	else if (!ft_strncmp(command, "rrr", 3))
-		rrr(&a, &b);
-	else if (!ft_strncmp(command, "ra", 2))
-		ra(&a);
-	else if (!ft_strncmp(command, "rb", 2))
-		rb(&b);
-	else if (!ft_strncmp(command, "rr", 2))
-		rr(&a, &b);
+		push(a, b);
 	else
-		return (0);
+		return (check_command2(command, a, b));
 	return (1);
 }
 
@@ -70,9 +76,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc < 2)
-		return (0);
-	if (!check_args(argc, argv, &a))
+	if (argc < 2 || !check_args(argc, argv, &a))
 	{
 		free_stack(&a);
 		return (0);
@@ -80,11 +84,8 @@ int	main(int argc, char **argv)
 	command = get_next_line(0);
 	while (command != NULL)
 	{
-		if (!check_command(command, a, b))
-		{
-			ft_printf("Error\n");
+		if (!check_command(command, &a, &b))
 			break ;
-		}
 		free(command);
 		command = get_next_line(0);
 	}
