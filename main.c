@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:25:29 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/25 16:49:46 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:27:31 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	a = NULL;
-	b = NULL;
 	if (argc < 2)
 		return (1);
-	if (!check_args(argc, argv, &a))
+	a = NULL;
+	if ((argc == 2 && !*argv[1]) || !check_args(argc, argv, &a))
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		free_stack(&a);
 		return (1);
 	}
+	b = NULL;
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
 	free_stack(&a);

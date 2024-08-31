@@ -66,7 +66,11 @@ int	is_integer(char *str)
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
+	{
+		if (!str[i + 1])
+			return (0);
 		i++;
+	}
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
