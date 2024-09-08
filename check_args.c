@@ -27,9 +27,9 @@ int	check_args(int argc, char **argv, t_stack **a)
 		argv = split_args(argv[1], &argc, &split, &i);
 	else
 		i = 1;
-	while (i < argc)
+	while (argc == 0 || i < argc)
 	{
-		if (!is_integer(argv[i])
+		if (argc == 0 || !is_integer(argv[i])
 			|| is_duplicate(*a, ft_atoi(argv[i])))
 		{
 			if (split)

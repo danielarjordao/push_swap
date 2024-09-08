@@ -6,7 +6,7 @@
 /*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:25:29 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/31 18:27:31 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:29:58 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	a = NULL;
-	if ((argc == 2 && !*argv[1]) || !check_args(argc, argv, &a))
+	if ((argc == 2 && !argv[1][0]) || !check_args(argc, argv, &a))
 	{
 		write(2, "Error\n", 6);
 		free_stack(&a);
