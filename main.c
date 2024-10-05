@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:25:29 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/09/08 09:29:58 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:00:07 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-void	print_stack(t_stack *stack)
-{
-	t_stack	*temp;
 
-	temp = stack;
-	while (temp)
-	{
-		ft_printf("%d ", temp->content);
-		temp = temp->next;
-	}
-	ft_printf("\n");
-}
-*/
 int	main(int argc, char **argv)
 {
 	t_stack	*a;

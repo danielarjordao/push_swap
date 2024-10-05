@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:28:19 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:28:19 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:57:57 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// First, check if the arguments are in the form of a string
-// If they are, split them into an array of strings
-// Then, check if the arguments are integers and if there are any duplicates
-// If there are, free the array of strings and return 0
-// If there are no errors, add the arguments to the stack
 int	check_args(int argc, char **argv, t_stack **a)
 {
 	int	i;
@@ -44,7 +39,6 @@ int	check_args(int argc, char **argv, t_stack **a)
 	return (1);
 }
 
-// Split the arguments into an array of strings
 char	**split_args(char *argv, int *argc, int *split, int *i)
 {
 	char	**new_argv;
@@ -58,7 +52,6 @@ char	**split_args(char *argv, int *argc, int *split, int *i)
 	return (new_argv);
 }
 
-// Check if the string is an integer
 int	is_integer(char *str)
 {
 	long long	num;
@@ -73,7 +66,7 @@ int	is_integer(char *str)
 	}
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '	')
 			return (0);
 		i++;
 	}
@@ -83,7 +76,6 @@ int	is_integer(char *str)
 	return (1);
 }
 
-// Check if the content is a duplicate
 int	is_duplicate(t_stack *stack, int content)
 {
 	t_stack	*temp;
@@ -98,7 +90,6 @@ int	is_duplicate(t_stack *stack, int content)
 	return (0);
 }
 
-// Free the array of strings
 void	free_argv(char **argv)
 {
 	int	i;

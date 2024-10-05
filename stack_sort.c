@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   stack_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:50:24 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 16:50:24 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:38:59 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Check if the stack is sorted
 int	is_sorted(t_stack *stack)
 {
 	t_stack	*temp;
@@ -27,9 +26,6 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-// Sort the stack with 3 elements
-// All combinations of the 3 elements are checked
-// Maximum 2 moves are needed to sort the stack
 void	simple_sort(t_stack **a)
 {
 	int		first;
@@ -59,14 +55,6 @@ void	simple_sort(t_stack **a)
 	}
 }
 
-// Keep 3 values from the highest half of the stack in stack a
-// Sort stack a with simple_sort
-// Go through the stack b and find the best moves to sort stack a
-// add_goal_positions calculates the goal position of the element in stack a
-// calculate_cost calculates the cost of moving the element to the goal position
-// move_cheapest moves the element with the lowest cost to stack a
-// After all elements were moved to stack a, it is sorted with sort_to_finish
-// sort_to_finish does rotations to sort the stack
 void	advanced_sort(t_stack **a, t_stack **b)
 {
 	keep_three(a, b);
@@ -81,11 +69,6 @@ void	advanced_sort(t_stack **a, t_stack **b)
 		sort_to_finish(a);
 }
 
-// Add sort values to the stack
-// The sort value is the position where the element should be in a sorted stack
-// If the size is 2, swap the elements
-// If the size is 3, sort the elements using simple_sort
-// If the size is greater than 3, sort the elements using advanced_sort
 void	sort_stack(t_stack **a, t_stack **b)
 {
 	int		size;

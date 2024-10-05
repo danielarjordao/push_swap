@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 16:03:32 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/24 16:03:32 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:48:00 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2 || !check_args(argc, argv, &a))
 	{
+		write(2, "Error\n", 6);
 		free_stack(&a);
 		return (0);
 	}

@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dramos-j <dramos-j@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dramos-j <dramos-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:24:34 by dramos-j          #+#    #+#             */
-/*   Updated: 2024/08/11 15:24:34 by dramos-j         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:35:34 by dramos-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Add a new argument to the stack
 void	add_args(t_stack **stack, int content)
 {
 	t_stack	*temp;
@@ -24,10 +23,6 @@ void	add_args(t_stack **stack, int content)
 		return ;
 	new->content = content;
 	new->sort_value = 0;
-	new->current_position = -1;
-	new->goal_position = -1;
-	new->cost_a = -1;
-	new->cost_b = -1;
 	new->next = NULL;
 	if (!*stack)
 		*stack = new;
@@ -38,7 +33,6 @@ void	add_args(t_stack **stack, int content)
 	}
 }
 
-// Get the size of the stack
 int	stack_size(t_stack *stack)
 {
 	int		size;
@@ -54,7 +48,6 @@ int	stack_size(t_stack *stack)
 	return (size);
 }
 
-// Find the last element of the stack
 t_stack	*find_last(t_stack *stack)
 {
 	t_stack	*temp;
@@ -65,7 +58,6 @@ t_stack	*find_last(t_stack *stack)
 	return (temp);
 }
 
-// Update the positions of the stack
 void	update_positions(t_stack **stack)
 {
 	t_stack	*temp;
@@ -80,7 +72,6 @@ void	update_positions(t_stack **stack)
 	}
 }
 
-// Free the stack
 void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
